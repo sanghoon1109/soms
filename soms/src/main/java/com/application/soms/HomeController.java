@@ -21,11 +21,6 @@ public class HomeController {
 		return "/main";
 	}
 	
-	@GetMapping("/signup")
-	public String home() {
-		
-		return "/signup";
-	}
 	
 	@GetMapping("/contact")
 	public String home1() {

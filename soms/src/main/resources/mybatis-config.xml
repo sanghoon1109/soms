@@ -3,4 +3,12 @@
 
 <configuration>
 
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.application.soms.member.dto.MemberDTO" alias="MemberDTO" />
+	</typeAliases>
+
 </configuration>

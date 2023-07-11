@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+
+	 <definition name="/member/signup"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/layout/signup.jsp"/>	
+ 		<put-attribute name="title" value="회원가입"/>	
+ 	</definition>
+ 	
+ 	<definition name="/member/login"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/layout/login.jsp"/>	
+ 		<put-attribute name="title" value="회원가입"/>	
+ 	</definition>
+
+</tiles-definitions>
