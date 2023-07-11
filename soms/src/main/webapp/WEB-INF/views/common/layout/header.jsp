@@ -14,7 +14,7 @@
                 <div class="col-lg-2">
                     <div class="header__logo">
                         <a href="./index.html">
-                            <img src="${contextPath }/resources/bootstrap/img/logo.png" alt="">
+                            <img src="${contextPath }/resources/bootstrap/img/logo.PNG"  width="93" height="23" alt="로고">
                         </a>
                     </div>
                 </div>
@@ -29,12 +29,12 @@
                                         <li><a href="./anime-details.html">Anime Details</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
-                                        <li><a href="./signup.html">Sign Up</a></li>
+                                        <li><a href="${contextPath }/signup">Sign Up</a></li>
                                         <li><a href="./login.html">Login</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="./blog.html">Our Blog</a></li>
-                                <li><a href="#">Contacts</a></li>
+                                <li><a href="${contextPath }/contact">Contacts</a></li>
                             </ul>
                         </nav>
                     </div>

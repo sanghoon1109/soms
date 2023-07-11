@@ -26,6 +26,7 @@
                         <li><a href="./categories.html">Categories</a></li>
                         <li><a href="./blog.html">Our Blog</a></li>
                         <li><a href="#">Contacts</a></li>
+                        <li><a href="${contextPath }/customerCenter">고객센터</a></li>
                     </ul>
                 </div>
             </div>

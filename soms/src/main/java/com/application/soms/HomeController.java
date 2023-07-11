@@ -15,4 +15,28 @@ public class HomeController {
 		return "/main";
 	}
 	
+	@GetMapping("/main")
+	public String home2() {
+		
+		return "/main";
+	}
+	
+	@GetMapping("/signup")
+	public String home() {
+		
+		return "/signup";
+	}
+	
+	@GetMapping("/contact")
+	public String home1() {
+		
+		return "/contact";
+	}
+	
+	@GetMapping("/customerCenter")
+	public String home3() {
+		
+		return "/customerCenter";
+	}
+	
 }

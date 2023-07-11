@@ -12,6 +12,19 @@
  		<put-attribute name="title" value="메인"/>	
  	</definition>
  	
-
+	 <definition name="/signup"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/layout/signup.jsp"/>	
+ 		<put-attribute name="title" value="회원가입"/>	
+ 	</definition>
+ 	
+	 <definition name="/contact"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/layout/contact.jsp"/>	
+ 		<put-attribute name="title" value="contact"/>	
+ 	</definition>
+ 	
+	 <definition name="/customerCenter"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/layout/customerCenter.jsp"/>	
+ 		<put-attribute name="title" value="고객센터"/>	
+ 	</definition>
 
 </tiles-definitions>

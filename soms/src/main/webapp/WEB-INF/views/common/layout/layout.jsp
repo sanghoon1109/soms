@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="${contextPath }/resources/bootstrap/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="${contextPath }/resources/bootstrap/css/style.css" type="text/css">
     <script src="${contextPath }/resources/bootstrap/js/jquery-3.3.1.min.js"></script>
+
 </head>
 
 <body>
