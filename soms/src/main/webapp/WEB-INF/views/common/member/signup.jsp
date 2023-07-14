@@ -96,7 +96,7 @@
 </head>
 <body>
 	<!-- Normal Breadcrumb Begin -->
-    <section class="normal-breadcrumb set-bg" data-setbg="${contextPath }/resources/bootstrap/img/normal-breadcrumb.jpg">
+    <section class="normal-breadcrumb set-bg" >
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
@@ -151,8 +151,7 @@
                             <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
                             <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
                         </ul>
-                           <br><br><br><br> <button type="submit" class="site-btn">Signup</button>
-                       
+                           <br><br><br><br> <button type="submit" class="site-btn">Signup</button> 
                     </div>
                 </div>
             </div>

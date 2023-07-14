@@ -62,26 +62,24 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Trending Now</h4>
+                                    <h4>New</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="${contextPath }/goods/goodsList?sort=new" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
 			                   	<c:choose>
-			                   		<c:when test="${empty goodsList}">
+			                   		<c:when test="${empty newList}">
 			                            <div class="product__item">
 			                    			<h3 style='color:white;'>등록된 상품이 없습니다.</h3>
 			                            </div>
 			                   		</c:when>
 			                   		<c:otherwise>
-			                   		<c:forEach var="goodsDTO" items="${goodsList }" begin="0" end="6" step="1">
-			                   			<c:choose>
-			                   				<c:when test="${goodsDTO.sort eq 'steady' }">
+			                   		<c:forEach var="goodsDTO" items="${newList }" begin="1" end="6" step="1">
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
 					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
@@ -97,8 +95,6 @@
 					                                    	</div>
 					                                	</div>
                          						   </div>						
-				                   				</c:when>
-			                   				</c:choose>
 			                   			</c:forEach>
 			                   		 </c:otherwise>                  	
 			                   	</c:choose>
@@ -108,338 +104,173 @@
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Popular Shows</h4>
+                                    <h4>Popular</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="${contextPath }/goods/goodsList?sort='popular'" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Sen to Chihiro no Kamikakushi</a></h5>
-                                    </div>
+			                   	<c:choose>
+			                   		<c:when test="${empty popularList}">
+			                            <div class="product__item">
+			                    			<h3 style='color:white;'>등록된 상품이 없습니다.</h3>
+			                            </div>
+			                   		</c:when>
+			                   		<c:otherwise>
+			                   		<c:forEach var="goodsDTO" items="${popularList }" begin="1" end="6" step="1">
+                           						 <div class="col-lg-4 col-md-6 col-sm-6">
+					                                <div class="product__item">
+					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
+					                                   	 </div>
+					                               			</a>
+					                                    	<div class="product__item__text">
+					                                        	<ul>
+					                                      	      	<li>Active</li>
+					                                            	<li>Movie</li>
+					                                        	</ul>
+					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                    	</div>
+					                                	</div>
+                         						   </div>						
+			                   			</c:forEach>
+			                   		 </c:otherwise>                  	
+			                   	</c:choose>
+                        </div>
+                    </div>                   
+                    <div class="recent__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>Best</h4>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-2.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                                    </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="btn__all">
+                                    <a href="${contextPath }/goods/goodsList?sort='best'" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-3.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                                    </div>
+                        </div>
+                        <div class="row">
+			                   	<c:choose>
+			                   		<c:when test="${empty bestList}">
+			                            <div class="product__item">
+			                    			<h3 style='color:white;'>등록된 상품이 없습니다.</h3>
+			                            </div>
+			                   		</c:when>
+			                   		<c:otherwise>
+			                   		<c:forEach var="goodsDTO" items="${bestList }">
+
+                           						 <div class="col-lg-4 col-md-6 col-sm-6">
+					                                <div class="product__item">
+					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
+					                                   	 </div>
+					                               			</a>
+					                                    	<div class="product__item__text">
+					                                        	<ul>
+					                                      	      	<li>Active</li>
+					                                            	<li>Movie</li>
+					                                        	</ul>
+					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                    	</div>
+					                                	</div>
+                         						   </div>						
+
+			                   			</c:forEach>
+			                   		 </c:otherwise>                  	
+			                   	</c:choose>
+                        </div>
+                    </div>                    
+                    <div class="live__product">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8">
+                                <div class="section-title">
+                                    <h4>General</h4>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-4.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Rurouni Kenshin: Meiji Kenkaku Romantan</a></h5>
-                                    </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="btn__all">
+                                    <a href="${contextPath }/goods/goodsList?sort='general'" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-5.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Mushishi Zoku Shou 2nd Season</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/popular/popular-6.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                                    </div>
-                                </div>
-                            </div>
+                        </div>
+                        <div class="row">
+			                   	<c:choose>
+			                   		<c:when test="${empty generalList}">
+			                            <div class="product__item">
+			                    			<h3 style='color:white;'>등록된 상품이 없습니다.</h3>
+			                            </div>
+			                   		</c:when>
+			                   		<c:otherwise>
+			                   		<c:forEach var="goodsDTO" items="${generalList }" begin="1" end="6" step="1">
+                           						 <div class="col-lg-4 col-md-6 col-sm-6">
+					                                <div class="product__item">
+					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
+					                                   	 </div>
+					                               			</a>
+					                                    	<div class="product__item__text">
+					                                        	<ul>
+					                                      	      	<li>Active</li>
+					                                            	<li>Movie</li>
+					                                        	</ul>
+					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                    	</div>
+					                                	</div>
+                         						   </div>
+			                   			</c:forEach>
+			                   		 </c:otherwise>                  	
+			                   	</c:choose>
                         </div>
                     </div>
                     <div class="recent__product">
                         <div class="row">
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>Recently Added Shows</h4>
+                                    <h4>Steady</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="${contextPath }/goods/goodsList?sort='steady'" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Great Teacher Onizuka</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-2.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Fate/stay night Movie: Heaven's Feel - II. Lost</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-3.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-4.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Fate/Zero 2nd Season</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-5.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Kizumonogatari II: Nekket su-hen</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/recent/recent-6.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                    </div>
-                                </div>
-                            </div>
+			                   	<c:choose>
+			                   		<c:when test="${empty steadyList}" >
+			                            <div class="product__item">
+			                    			<h3 style='color:white;'>등록된 상품이 없습니다.</h3>
+			                            </div>
+			                   		</c:when>
+			                   		<c:otherwise>
+			                   		<c:forEach var="goodsDTO" items="${steadyList }" begin="1" end="6" step="1">
+                           						 <div class="col-lg-4 col-md-6 col-sm-6">
+					                                <div class="product__item">
+					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
+					                                   	 </div>
+					                               			</a>
+					                                    	<div class="product__item__text">
+					                                        	<ul>
+					                                      	      	<li>Active</li>
+					                                            	<li>Movie</li>
+					                                        	</ul>
+					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                    	</div>
+					                                	</div>
+                         						   </div>						
+			                   			</c:forEach>
+			                   		 </c:otherwise>                  	
+			                   	</c:choose>
                         </div>
-                    </div>
-                    <div class="live__product">
-                        <div class="row">
-                            <div class="col-lg-8 col-md-8 col-sm-8">
-                                <div class="section-title">
-                                    <h4>Live Action</h4>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-4">
-                                <div class="btn__all">
-                                    <a href="#" class="primary-btn">View All <span class="arrow_right"></span></a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-1.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Shouwa Genroku Rakugo Shinjuu</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-2.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Mushishi Zoku Shou 2nd Season</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-3.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Mushishi Zoku Shou: Suzu no Shizuku</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-4.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-5.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Fate/stay night Movie: Heaven's Feel - II. Lost</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 col-sm-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${contextPath }/resources/bootstrap/img/live/live-6.jpg">
-                                        <div class="ep">18 / 18</div>
-                                        <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <ul>
-                                            <li>Active</li>
-                                            <li>Movie</li>
-                                        </ul>
-                                        <h5><a href="#">Kizumonogatari II: Nekketsu-hen</a></h5>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>                    
+                                       
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">

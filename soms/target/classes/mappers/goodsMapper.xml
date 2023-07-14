@@ -12,4 +12,61 @@
 				SORT DESC
 	</select>
 
+	<select id="selectDetailGoodsList" parameterType="String" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = #{sort}
+	</select>
+	
+	<select id="selectNewList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = 'NEW'
+	</select>
+	
+	<select id="selectSteadyList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = 'STEADY'
+	</select>
+	
+	<select id="selectPopularList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = 'POPULAR'
+	</select>
+	
+	<select id="selectBestList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = 'BEST'
+	</select>
+	
+	<select id="selectGeneralList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = 'GENERAL'
+	</select>
+	
+	
+	
+
 </mapper>
