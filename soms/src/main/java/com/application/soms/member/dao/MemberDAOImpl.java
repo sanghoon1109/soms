@@ -17,4 +17,14 @@ public class MemberDAOImpl implements MemberDAO {
 		sqlSession.insert("member.insertMember" , memberDTO);
 	}
 
+	@Override
+	public MemberDTO selectOneMember(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne("member.selectOneMember" , memberDTO);
+	}
+
+	@Override
+	public String selectCheckMemberId(String memberId) throws Exception {
+		return sqlSession.selectOne("member.selectCheckMemberId", memberId);
+	}
+
 }

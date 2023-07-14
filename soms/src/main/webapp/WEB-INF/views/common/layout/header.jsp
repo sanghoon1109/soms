@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-lg-2">
                     <div class="header__logo">
-                        <a href="./index.html">
+                        <a href="${contextPath }/">
                             <img src="${contextPath }/resources/bootstrap/img/logo.PNG"  width="93" height="23" alt="로고">
                         </a>
                     </div>
@@ -42,7 +42,20 @@
                 <div class="col-lg-2">
                     <div class="header__right">
                         <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                        <a href="./login.html"><span class="icon_profile"></span></a>
+                        <c:choose>
+                    		<c:when test="${sessionScope.memberId eq null }">
+                    		<div class="header__right__auth">
+		                           <a href="${contextPath }/member/login">Login</a>
+		                           <a href="${contextPath }/member/signup">Signup</a>
+		                    </div>
+                    		</c:when>
+                    		<c:otherwise>
+		                        <div class="header__right__auth">
+		                           <a href="${contextPath }/member/logout">logout</a>
+                       			   <a href="${contextPath }/myPage/myInfo"><span class="icon_profile"></span></a>
+		                        </div>
+                    		</c:otherwise>
+                    	</c:choose>
                     </div>
                 </div>
             </div>

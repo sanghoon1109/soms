@@ -3,13 +3,18 @@
 <tiles-definitions>
 
 	 <definition name="/member/signup"  extends="default">	
- 		<put-attribute name="body" value="/WEB-INF/views/common/layout/signup.jsp"/>	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/member/signup.jsp"/>	
  		<put-attribute name="title" value="회원가입"/>	
  	</definition>
  	
  	<definition name="/member/login"  extends="default">	
- 		<put-attribute name="body" value="/WEB-INF/views/common/layout/login.jsp"/>	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/member/login.jsp"/>	
  		<put-attribute name="title" value="회원가입"/>	
+ 	</definition>
+
+ 	<definition name="/member/forgetPass"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/common/member/forgetPass.jsp"/>	
+ 		<put-attribute name="title" value="비밀번호 찾기"/>	
  	</definition>
 
 </tiles-definitions>

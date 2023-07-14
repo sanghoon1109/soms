@@ -6,52 +6,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-	
-	$().ready(function(){
-		var validatePasswd = false;
-		$("#checkPasswd").keyup(function(){
-		var checkPasswd = "";
-			
-			if($("#passwd").val() != $("#checkPasswd").val()) {
-				checkPasswd += "<span style='color:red;'>";
-				checkPasswd += "* 비밀번호를 다시 확인해주세요";
-				checkPasswd += "</span>";
-				
-			}
-			else {
-				checkPasswd += "<span style='color:green;'>";
-				checkPasswd += "* 확인되었습니다";
-				checkPasswd += "</span>";
-				validatePasswd = true;
-			}
-			$("#textPasswd").html(checkPasswd);
-		});
-		
-		$("form").submit(function(){
-			
-			
-			if(!validatePasswd) {
-				alert("비밀번호를 확인해주세요");
-				return false;
-			}
-			
-			
-		});
-		
-	});
-	
-</script>
 </head>
 <body>
-	<!-- Normal Breadcrumb Begin -->
+		<!-- Normal Breadcrumb Begin -->
     <section class="normal-breadcrumb set-bg" data-setbg="${contextPath }/resources/bootstrap/img/normal-breadcrumb.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <div class="normal__breadcrumb__text">
-                        <h2>Sign Up</h2>
-                        <p>Welcome to the official Anime blog.</p>
+                        <h2>추가정보</h2>
                     </div>
                 </div>
             </div>
@@ -68,7 +31,7 @@
 						<h3>Sign Up</h3>
 						<form action="${contextPath }/member/signup" method="post">
 							<div class="input__item">
-								<input type="email" name="memberId" id="memberId"
+								<input type="email" name="" id="memberId"
 									placeholder="Email address"> <span class="icon_mail"></span>
 							</div>
 							<div class="input__item">
@@ -84,7 +47,7 @@
 								<span class="icon_lock"></span>
 							</div>
 							<div id="textPasswd"></div>
-							<button type="submit" class="site-btn">Login Now</button>
+							<button type="submit" class="site-btn">Signup</button>
 						</form>
 						<h5>
 							Already have an account? <a href="${contextPath }/member/login">Log In!</a>
@@ -100,7 +63,7 @@
                             <li><a href="#" class="google"><i class="fa fa-google"></i> Sign in With Google</a></li>
                             <li><a href="#" class="twitter"><i class="fa fa-twitter"></i> Sign in With Twitter</a></li>
                         </ul>
-                           <br><br><br><br> <button type="submit" class="site-btn">Login Now</button>
+                           <br><br><br><br> <button type="submit" class="site-btn">Signup</button>
                        
                     </div>
                 </div>
@@ -108,6 +71,5 @@
         </div>
     </section>
     <!-- Signup Section End -->
-	
 </body>
 </html>

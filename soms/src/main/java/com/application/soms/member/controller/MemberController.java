@@ -1,6 +1,7 @@
 package com.application.soms.member.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -10,11 +11,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.application.soms.member.dto.MemberDTO;
-import com.application.soms.service.MemberService;
+import com.application.soms.member.service.MemberService;
 
 @Controller
 @RequestMapping("/member")
@@ -32,7 +34,6 @@ public class MemberController {
 	@PostMapping("/signup")
 	public ResponseEntity<Object> signUp(MemberDTO memberDTO , HttpServletRequest request) throws Exception {
 	    
-		System.out.println("memberDTO : " + memberDTO);
 		memberService.addMember(memberDTO);
 		
 		String jsScript = "<script>";
@@ -50,8 +51,58 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public ModelAndView login() {
-		
 		return new ModelAndView("/member/login");
 	}
+	
+	@PostMapping("/login")
+	public ResponseEntity<Object> login(MemberDTO memberDTO, HttpServletRequest request) throws Exception {
+		
+		String jsScript = "";
+		if(memberService.login(memberDTO)) {
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("memberId", memberDTO.getMemberId());
+			session.setAttribute("role", "client");
+			session.setMaxInactiveInterval(60 * 30);
+			
+			jsScript += "<script>";
+			jsScript += "location.href='" + request.getContextPath() + "/';";
+			jsScript += "</script>";
+			
+		}
+		else {
+			
+			jsScript += "<script>";
+			jsScript += "alert('아이디와 비밀번호를 확인해주세요');";
+			jsScript += " history.go(-1);";
+			jsScript += "</script>";			
+		}
+		
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript, responseHeaders, HttpStatus.OK);
+	
+	}
+	
+	@GetMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		session.invalidate();
+		return new ModelAndView("/main");
+	}
+	
+	@GetMapping("/checkDuplicatedId")
+	public ResponseEntity<String> checkDuplicate(@RequestParam("memberId") String memberId) throws Exception {
+		return new ResponseEntity<String>(memberService.checkDuplicateId(memberId), HttpStatus.OK);
+	}
+	
+	@GetMapping("/forgetPass")
+	public ModelAndView forget() {
+		return new ModelAndView("/member/forgetPass");
+	}
+	
+	
 	
 }

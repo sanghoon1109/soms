@@ -44,7 +44,7 @@
                                qqqasdasdsadsadsadsadsadsadsadsadsadsadsadsadsadsadsd
                             </div>
                             <div class="tab-pane" id="tabs-2" role="tabpanel">
-                            	aaa
+                            	
                             </div>
                             <div class="tab-pane" id="tabs-3" role="tabpanel">
                             	dddd

@@ -9,6 +9,8 @@
 	
 	<typeAliases>
 		<typeAlias type="com.application.soms.member.dto.MemberDTO" alias="MemberDTO" />
+		<typeAlias type="com.application.soms.goods.dto.GoodsDTO" alias="GoodsDTO" />
 	</typeAliases>
+
 
 </configuration>

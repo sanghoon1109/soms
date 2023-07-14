@@ -14,5 +14,23 @@
 			#{passwd}
 		)
 	</insert>
+	
+	<select id="selectOneMember" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT 
+				*
+		FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="selectCheckMemberId" parameterType="String" resultType="String">
+		SELECT
+				*
+		FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
 
 </mapper>
