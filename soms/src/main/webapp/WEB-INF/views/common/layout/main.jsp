@@ -1,11 +1,34 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
+<c:set var="sessionId" value="${sessionScope.memberId }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+	
+	function processId(goodsCd, sort) {
+		console.log("goodsCd" + goodsCd);
+		console.log("sort" + sort);
+		if("${sessionId == null}" == "true") {
+			Swal.fire('로그인 후 이용해주세요').then(function(){
+				location.href='${contextPath }/member/login';
+			})
+		}
+		else if(goodsCd == "0") {
+			location.href="${contextPath }/goods/goodsList?sort=" + sort + "&memberId=${sessionId}";
+		}
+		else {
+			location.href="${contextPath }/goods/goodsDetail?goodsCd=" + goodsCd + "&memberId=${sessionId}";
+		}
+		
+	}
+	
+	
+</script>
 </head>
 <body>
 	<!-- Hero Section Begin -->
@@ -67,7 +90,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="${contextPath }/goods/goodsList?sort=new" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="javascript:processId(0, 'new')" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -82,7 +105,7 @@
 			                   		<c:forEach var="goodsDTO" items="${newList }" begin="1" end="6" step="1">
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
-					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+					                               	 <a href="javascript:processId(${goodsDTO.goodsCd})">
 														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
 					                                   	 </div>
 					                               			</a>
@@ -91,7 +114,7 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="javascript:processId(${goodsDTO.goodsCd})">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>						
@@ -109,7 +132,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="${contextPath }/goods/goodsList?sort='popular'" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="javascript:processId(0, 'popular')" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +147,7 @@
 			                   		<c:forEach var="goodsDTO" items="${popularList }" begin="1" end="6" step="1">
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
-					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+					                               	 <a href="javascript:processId(${goodsDTO.goodsCd})">
 														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
 					                                   	 </div>
 					                               			</a>
@@ -133,7 +156,7 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="javascript:processId(${goodsDTO.goodsCd})">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>						
@@ -151,7 +174,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="${contextPath }/goods/goodsList?sort='best'" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="javascript:processId(0, 'best')" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -163,11 +186,11 @@
 			                            </div>
 			                   		</c:when>
 			                   		<c:otherwise>
-			                   		<c:forEach var="goodsDTO" items="${bestList }">
+			                   		<c:forEach var="goodsDTO" items="${bestList }" begin="1" end="6" step="1">
 
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
-					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+					                               	 <a href="javascript:processId(${goodsDTO.goodsCd})">
 														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
 					                                   	 </div>
 					                               			</a>
@@ -176,7 +199,7 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="javascript:processId(${goodsDTO.goodsCd})">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>						
@@ -195,7 +218,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="${contextPath }/goods/goodsList?sort='general'" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="javascript:processId(0, 'general')" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -210,7 +233,7 @@
 			                   		<c:forEach var="goodsDTO" items="${generalList }" begin="1" end="6" step="1">
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
-					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+					                               	 <a href="javascript:processId(${goodsDTO.goodsCd})">
 														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
 					                                   	 </div>
 					                               			</a>
@@ -219,7 +242,7 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="javascript:processId(${goodsDTO.goodsCd})">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>
@@ -237,7 +260,7 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-                                    <a href="${contextPath }/goods/goodsList?sort='steady'" class="primary-btn">View All <span class="arrow_right"></span></a>
+                                    <a href="javascript:processId(0, 'steady')" class="primary-btn">View All <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -252,7 +275,7 @@
 			                   		<c:forEach var="goodsDTO" items="${steadyList }" begin="1" end="6" step="1">
                            						 <div class="col-lg-4 col-md-6 col-sm-6">
 					                                <div class="product__item">
-					                               	 <a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">
+					                               	 <a href="javascript:processId(${goodsDTO.goodsCd})">
 														<div class="product__item__pic set-bg" data-setbg="${goodsDTO.goodsFileName }" >
 					                                   	 </div>
 					                               			</a>
@@ -261,7 +284,7 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="javascript:processId(${goodsDTO.goodsCd})">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>						
@@ -281,40 +304,24 @@
                             <ul class="filter__controls">
                                 <li class="active" data-filter="*">Day</li>
                                 <li data-filter=".week">Week</li>
-                                <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
+                                <li data-filter=".month">2Week</li>
                             </ul>
                             <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
+                            	${dayList.goodsFileName }
+                                <div class="product__sidebar__view__item set-bg mix day" data-setbg="${dayList.goodsFileName }">
+                                <div class="view"><i class="fa fa-eye"></i> ${dayList.dayViewCnt }</div>
+                                <h5><a href="javascript:processId(${dayList.goodsCd})">${dayList.goodsNm }</a></h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg mix month week"
-                            data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-2.jpg">
+                            <div class="product__sidebar__view__item set-bg mix week" data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-2.jpg">
                             <div class="ep">18 / ?</div>
                             <div class="view"><i class="fa fa-eye"></i> 9141</div>
                             <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
                         </div>
-                        <div class="product__sidebar__view__item set-bg mix week years"
-                        data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-3.jpg">
+                        <div class="product__sidebar__view__item set-bg mix 2week" data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-3.jpg">
                         <div class="ep">18 / ?</div>
                         <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         <h5><a href="#">Sword art online alicization war of underworld</a></h5>
                     </div>
-                    <div class="product__sidebar__view__item set-bg mix years month"
-                    data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-4.jpg">
-                    <div class="ep">18 / ?</div>
-                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                </div>
-                <div class="product__sidebar__view__item set-bg mix day"
-                data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-5.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-            </div>
         </div>
     </div>
     <div class="product__sidebar__comment">

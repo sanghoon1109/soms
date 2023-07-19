@@ -55,7 +55,6 @@
 			       type : "get",
 			       url  : "${contextPath}/member/checkDuplicatedId?memberId=" + memberId,
 			       success : function (data){
-			    	   console.log(data);
 			          if (data == "duplicate"){
 			        	  checkId += "<span style='color:green;'>";
 			        	  checkId += "* 사용 가능한 아이디 입니다";
@@ -86,7 +85,7 @@
 				alert("아이디를 다시 입력해주세요");
 				return false;
 			}
-			
+
 			
 		});
 		

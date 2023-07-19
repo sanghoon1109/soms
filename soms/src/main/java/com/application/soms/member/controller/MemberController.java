@@ -46,7 +46,7 @@ public class MemberController {
 		
 		return new ResponseEntity<Object>(jsScript, responseHeaders, HttpStatus.OK);
 		
-	} 
+	}
 	
 	
 	@GetMapping("/login")
@@ -58,8 +58,7 @@ public class MemberController {
 	public ResponseEntity<Object> login(MemberDTO memberDTO, HttpServletRequest request) throws Exception {
 		
 		String jsScript = "";
-		if(memberService.login(memberDTO)) {
-			
+		if(memberService.login(memberDTO)) {		
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", memberDTO.getMemberId());
 			session.setAttribute("role", "client");
@@ -67,11 +66,9 @@ public class MemberController {
 			
 			jsScript += "<script>";
 			jsScript += "location.href='" + request.getContextPath() + "/';";
-			jsScript += "</script>";
-			
+			jsScript += "</script>";		
 		}
-		else {
-			
+		else {	
 			jsScript += "<script>";
 			jsScript += "alert('아이디와 비밀번호를 확인해주세요');";
 			jsScript += " history.go(-1);";
@@ -87,10 +84,20 @@ public class MemberController {
 	}
 	
 	@GetMapping("/logout")
-	public ModelAndView logout(HttpServletRequest request) {
+	public ResponseEntity<Object> logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		session.invalidate();
-		return new ModelAndView("/main");
+		
+		String jsScript = "";
+		jsScript += "<script>";
+		jsScript += "alert('로그아웃 되었습니다.');";
+		jsScript += "location.href='" + request.getContextPath() + "/';";
+		jsScript += "</script>";
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<Object>(jsScript ,responseHeaders, HttpStatus.OK);
 	}
 	
 	@GetMapping("/checkDuplicatedId")

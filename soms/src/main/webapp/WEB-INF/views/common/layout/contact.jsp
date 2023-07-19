@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <a href="${contextPath }/main"><i class="fa fa-home"></i> Home</a>
+                        <a href="${contextPath }/"><i class="fa fa-home"></i> Home</a>
                         <span>contact</span>
                     </div>
                 </div>

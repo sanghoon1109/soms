@@ -18,12 +18,14 @@ public class GoodsDTO {
 	private String classification;
 	private String subtitleSupport;
 	private String contentIntro;
-	private long viewerPicks;
+	private long views;
+	private long dayViewCnt;
+	private long weekViewCnt;
+	private long monthViewCnt;
 	private String director;
 	private String sort;
 	private String goodsFileName;
 	private Date enrollDt;
-	
 	
 	public int getGoodsCd() {
 		return goodsCd;
@@ -91,11 +93,29 @@ public class GoodsDTO {
 	public void setContentIntro(String contentIntro) {
 		this.contentIntro = contentIntro;
 	}
-	public long getViewerPicks() {
-		return viewerPicks;
+	public long getViews() {
+		return views;
 	}
-	public void setViewerPicks(long viewerPicks) {
-		this.viewerPicks = viewerPicks;
+	public void setViews(long views) {
+		this.views = views;
+	}
+	public long getDayViewCnt() {
+		return dayViewCnt;
+	}
+	public void setDayViewCnt(long dayViewCnt) {
+		this.dayViewCnt = dayViewCnt;
+	}
+	public long getWeekViewCnt() {
+		return weekViewCnt;
+	}
+	public void setWeekViewCnt(long weekViewCnt) {
+		this.weekViewCnt = weekViewCnt;
+	}
+	public long getMonthViewCnt() {
+		return monthViewCnt;
+	}
+	public void setMonthViewCnt(long monthViewCnt) {
+		this.monthViewCnt = monthViewCnt;
 	}
 	public String getDirector() {
 		return director;
@@ -122,18 +142,18 @@ public class GoodsDTO {
 		this.enrollDt = enrollDt;
 	}
 	
-	
 	@Override
 	public String toString() {
 		return "GoodsDTO [goodsCd=" + goodsCd + ", goodsNm=" + goodsNm + ", nation=" + nation + ", produceDt="
 				+ produceDt + ", genre=" + genre + ", category=" + category + ", appearance=" + appearance
 				+ ", quality=" + quality + ", classification=" + classification + ", subtitleSupport=" + subtitleSupport
-				+ ", contentIntro=" + contentIntro + ", viewerPicks=" + viewerPicks + ", director=" + director
+				+ ", contentIntro=" + contentIntro + ", views=" + views + ", dayViewCnt=" + dayViewCnt
+				+ ", weekViewCnt=" + weekViewCnt + ", monthViewCnt=" + monthViewCnt + ", director=" + director
 				+ ", sort=" + sort + ", goodsFileName=" + goodsFileName + ", enrollDt=" + enrollDt + "]";
 	}
 	
+
 	
-	
-	
+
 	
 }

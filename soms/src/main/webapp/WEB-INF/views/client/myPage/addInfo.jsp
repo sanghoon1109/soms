@@ -31,7 +31,7 @@
 						<h3>Sign Up</h3>
 						<form action="${contextPath }/member/signup" method="post">
 							<div class="input__item">
-								<input type="email" name="" id="memberId"
+								<input type="email" name="memberId" id="memberId"
 									placeholder="Email address"> <span class="icon_mail"></span>
 							</div>
 							<div class="input__item">

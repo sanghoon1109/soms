@@ -3,8 +3,18 @@
 <tiles-definitions>
 
 	<definition name="/goods/goodsList"  extends="default">	
- 		<put-attribute name="body" value="/WEB-INF/views/goods/goodsList.jsp"/>	
+ 		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsList.jsp"/>	
  		<put-attribute name="title" value="콘텐츠리스트"/>	
  	</definition>
-
+ 	
+	<definition name="/goods/goodsDetail"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsDetail.jsp"/>	
+ 		<put-attribute name="title" value="디테일"/>	
+ 	</definition>
+ 	
+	<definition name="/goods/goodsWatching"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsWatching.jsp"/>	
+ 		<put-attribute name="title" value="콘텐츠 시청"/>	
+ 	</definition>
+ 	
 </tiles-definitions>

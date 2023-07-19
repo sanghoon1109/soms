@@ -66,7 +66,106 @@
 				SORT = 'GENERAL'
 	</select>
 	
+	<select id="selectOneGoodsDetail" parameterType="int" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</select>
 	
+	<update id="updateViewCnt" parameterType="int">
+		UPDATE 
+				GOODS
+		SET
+				DAY_VIEW_CNT = DAY_VIEW_CNT + 1
+		WHERE
+				GOODS_CD = #{goodsCd}				
+	</update>
 	
+	<select id="selectOneGoodsCnt" parameterType="String" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				GOODS
+		WHERE
+				SORT = #{sort}
+	</select>
+	
+	<select id="selectOneAllGoodsList" parameterType="hashmap" resultType="GoodsDTO">	
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				SORT = #{sort}
+		ORDER BY
+				ENROLL_DT DESC
+		LIMIT 
+				#{startBoardIdx},#{onePageViewCnt}
+	</select>
+	
+	<select id="selectGoodsDetail" parameterType="int" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</select>
+	
+	<update id="updateDayViewCnt">
+		UPDATE
+				GOODS
+		SET
+				VIEWS = VIEWS + DAY_VIEW_CNT,
+				WEEK_VIEW_CNT = WEEK_VIEW_CNT + DAY_VIEW_CNT,
+				MONTH_VIEW_CNT = MONTH_VIEW_CNT + DAY_VIEW_CNT				
+	</update>
+	
+	<update id="resetDayViewCnt">
+		UPDATE
+				GOODS
+		SET
+				DAY_VIEW_CNT = 0
+	</update>
+	
+	<select id="getDayViewList" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		ORDER BY
+				DAY_VIEW_CNT DESC
+		LIMIT 
+				0, 6
+	</select>
+	
+	<select id="selectOneMemberId" parameterType="String" resultType="MemberDTO">
+		SELECT
+				*
+		FROM
+				MEMBER
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<insert id="insertReply" parameterType="ReplyDTO">
+		INSERT INTO REPLY(
+			MEMBER_ID,
+			MEMBER_NM,
+			MEMBER_PROFILE,
+			REPLY_CONTENT,
+			GOODS_CD
+		)
+		VALUES(
+			#{memberId},
+			#{memberNm},
+			#{memberProfile},
+			#{replyContent},
+			#{goodsCd}
+		)
+	</insert>
 
 </mapper>

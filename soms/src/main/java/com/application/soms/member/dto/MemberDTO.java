@@ -21,7 +21,7 @@ public class MemberDTO {
 	private String jibunAddress;
 	private String namujiAddress;
 	private Date joinDt;
-	
+	private String profile;
 	
 	public String getMemberId() {
 		return memberId;
@@ -107,16 +107,24 @@ public class MemberDTO {
 	public void setJoinDt(Date joinDt) {
 		this.joinDt = joinDt;
 	}
-	
+	public String getProfile() {
+		return profile;
+	}
+	public void setProfile(String profile) {
+		this.profile = profile;
+	}
 	
 	@Override
 	public String toString() {
 		return "MemberDTO [memberId=" + memberId + ", memberNm=" + memberNm + ", passwd=" + passwd + ", sex=" + sex
 				+ ", dateBirth=" + dateBirth + ", hp=" + hp + ", smsstsYn=" + smsstsYn + ", email=" + email
 				+ ", emailstsYn=" + emailstsYn + ", zipcode=" + zipcode + ", roadAddress=" + roadAddress
-				+ ", jibunAddress=" + jibunAddress + ", namujiAddress=" + namujiAddress + ", joinDt=" + joinDt + "]";
+				+ ", jibunAddress=" + jibunAddress + ", namujiAddress=" + namujiAddress + ", joinDt=" + joinDt
+				+ ", profile=" + profile + "]";
 	}
 	
+	
+
 	
 	
 }
