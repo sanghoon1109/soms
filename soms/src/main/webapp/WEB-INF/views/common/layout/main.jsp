@@ -11,8 +11,6 @@
 <script>
 	
 	function processId(goodsCd, sort) {
-		console.log("goodsCd" + goodsCd);
-		console.log("sort" + sort);
 		if("${sessionId == null}" == "true") {
 			Swal.fire('로그인 후 이용해주세요').then(function(){
 				location.href='${contextPath }/member/login';
@@ -31,42 +29,55 @@
 </script>
 </head>
 <body>
+
 	<!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/hero/hero-1.jpg">
+                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/xOY2tKrep2ikGJsdRWyzbfLbjsX.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">Best</div>
+                                <h2>스파이더맨: 어크로스 더 유니버스</h2>
+                                 <p><strong>
+    	                            스파이더맨 VS 스파이더맨?!<br>
+	                                상상 그 이상을 넘어서는 멀티버스의 세계가 열린다!
+                                </strong></p>
+                                <a href="javascript:processId(29)"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/hero/hero-1.jpg">
+                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/elemental-yp.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">Popular</div>
+                                <h2>엘리멘탈</h2>
+                                <p><strong>
+    	                            디즈니·픽사의 놀라운 상상력!<br>
+	                                올여름, 세상이 살아 숨 쉰다 
+                                </strong></p>
+                                <a href="javascript:processId(44)"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/hero/hero-1.jpg">
+                <div class="hero__items set-bg" data-setbg="${contextPath }/resources/bootstrap/img/maxresdefault.jpg">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <div class="label">Action</div>
+                                <div class="label">Popular</div>
+                                <h2>범죄도시 3</h2>
+                                <p><strong>
+                                	나쁜 놈들 잡는 데 이유 없고 제한 없다<br>
+                                	커진 판도 시원하게 싹 쓸어버린다!
+                                </strong></p>
+                                <a href="javascript:processId(5)"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -292,8 +303,7 @@
 			                   		 </c:otherwise>                  	
 			                   	</c:choose>
                         </div>
-                    </div>                    
-                                       
+                    </div>                                                       
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="product__sidebar">
@@ -302,86 +312,92 @@
                                 <h5>Top Views</h5>
                             </div>
                             <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
+                                <li class="active" data-filter=".day">Day</li>
                                 <li data-filter=".week">Week</li>
-                                <li data-filter=".month">2Week</li>
+                                <li data-filter=".month">Month</li>
                             </ul>
-                            <div class="filter__gallery">
-                            	${dayList.goodsFileName }
-                                <div class="product__sidebar__view__item set-bg mix day" data-setbg="${dayList.goodsFileName }">
-                                <div class="view"><i class="fa fa-eye"></i> ${dayList.dayViewCnt }</div>
-                                <h5><a href="javascript:processId(${dayList.goodsCd})">${dayList.goodsNm }</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg mix week" data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg mix 2week" data-setbg="${contextPath }/resources/bootstrap/img/sidebar/tv-3.jpg">
-                        <div class="ep">18 / ?</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                    </div>
-        </div>
+		                    <div class="filter__gallery">
+                            <c:choose>
+                            	<c:when test="${empty dayList }">
+                           			 <div class="product__item">
+		                            </div>
+                            	</c:when>
+                            	<c:otherwise>
+                            	<c:forEach var="dayDTO" items="${dayList }">
+		                                <div class="product__sidebar__view__item set-bg mix day" data-setbg="${dayDTO.goodsFileName }">
+		                                <div class="ep">${dayDTO.sort }</div>
+		                                <div class="view"><i class="fa fa-eye"></i>${dayDTO.dayView }</div>
+		                                <h5><a href="javascript:processId(${dayDTO.goodsCd})">${dayDTO.goodsNm }</a></h5>
+		                            </div>
+                            	</c:forEach>
+                            	</c:otherwise>
+                            </c:choose>
+							<c:choose>
+								<c:when test="${empty weekList }">
+									<div class="product__item">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="weekDTO" items="${weekList }">
+										<div class="product__sidebar__view__item set-bg mix week" data-setbg="${weekDTO.goodsFileName }">
+											<div class="ep">${weekDTO.sort }</div>
+											<div class="view">
+												<i class="fa fa-eye"></i>${weekDTO.weekView }
+											</div>
+											<h5>
+												<a href="javascript:processId(${weekDTO.goodsCd})">${weekDTO.goodsNm }</a>
+											</h5>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${empty weekList }">
+									<div class="product__item"></div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="monthDTO" items="${monthList }">
+										<div class="product__sidebar__view__item set-bg mix month" data-setbg="${monthDTO.goodsFileName }">
+											<div class="ep">${monthDTO.sort }</div>
+											<div class="view">
+												<i class="fa fa-eye"></i>${monthDTO.monthView }
+											</div>
+											<h5>
+												<a href="javascript:processId(${monthDTO.goodsCd})">${monthDTO.goodsNm }</a>
+											</h5>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</div>
     </div>
     <div class="product__sidebar__comment">
         <div class="section-title">
             <h5>New Comment</h5>
         </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="${contextPath }/resources/bootstrap/img/sidebar/comment-1.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="${contextPath }/resources/bootstrap/img/sidebar/comment-2.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="${contextPath }/resources/bootstrap/img/sidebar/comment-3.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="${contextPath }/resources/bootstrap/img/sidebar/comment-4.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
+        <c:choose>
+        <c:when test="${replyList eq null}">
+        </c:when>
+        <c:otherwise>
+        	<c:forEach var="replyDTO" items="${replyList }">
+		        <div class="product__sidebar__comment__item">
+		            <div class="product__sidebar__comment__item__pic">
+               			 <a href="javascript:processId(${replyDTO.goodsCd})"><img src="${replyDTO.goodsFileName }" alt="사진" width="60" height="80"></a>
+            		</div>
+		            	<div class="product__sidebar__comment__item__text">
+		               	 			<ul>
+		                    			<li>Active</li>
+		                    			<li>Movie</li>
+		                			</ul>
+		                		<h5 style='color:white;'><a href="javascript:processId(${replyDTO.goodsCd})">${replyDTO.goodsNm }</a></h5>
+		               		 <span><i class="fa fa-eye"></i> ${replyDTO.views } Viewes</span>
+		            	</div>
+		        	</div>
+        		</c:forEach>
+        	</c:otherwise>
+        </c:choose>
     </div>
-</div>
 </div>
 </div>
 </div>

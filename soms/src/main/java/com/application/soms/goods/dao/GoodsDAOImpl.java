@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.application.soms.goods.dto.GoodsBatchDTO;
 import com.application.soms.goods.dto.GoodsDTO;
 import com.application.soms.goods.dto.ReplyDTO;
 import com.application.soms.member.dto.MemberDTO;
@@ -87,10 +88,6 @@ public class GoodsDAOImpl implements GoodsDAO {
 		sqlSession.update("goods.resetDayViewCnt");
 	}
 
-	@Override
-	public List<GoodsDTO> getDayViewList() throws Exception {
-		return sqlSession.selectList("goods.getDayViewList");
-	}
 
 	@Override
 	public MemberDTO selectOneMemberId(String memberId) throws Exception {
@@ -101,6 +98,104 @@ public class GoodsDAOImpl implements GoodsDAO {
 	public void insertReply(ReplyDTO replyDTO) throws Exception {
 		sqlSession.insert("goods.insertReply", replyDTO);
 	}
+
+	@Override
+	public List<ReplyDTO> selectListReply(int goodsCd) throws Exception {
+		return sqlSession.selectList("goods.selectListReply", goodsCd);
+	}
+
+	@Override
+	public List<GoodsDTO> selectListDayList() throws Exception {
+		return sqlSession.selectList("goods.selectListDayList");
+	}
+
+	@Override
+	public void insertDayView(GoodsDTO goodsDTO) throws Exception {
+		sqlSession.insert("goods.insertDayView", goodsDTO);
+	}
+
+	@Override
+	public List<GoodsBatchDTO> selectListDayView() throws Exception {
+		return sqlSession.selectList("goods.selectListDayView");
+	}
+
+	@Override
+	public void deleteBatchView() throws Exception {
+		sqlSession.delete("goods.deleteBatchView");
+	}
+
+	@Override
+	public List<GoodsBatchDTO> selectListWeekView() throws Exception {
+		return sqlSession.selectList("goods.selectListWeekView");
+	}
+
+	@Override
+	public List<GoodsBatchDTO> selectListMonthView() throws Exception {
+		return sqlSession.selectList("goods.selectListMonthView");
+	}
+
+	@Override
+	public List<GoodsDTO> selectListWeekList() throws Exception {
+		return sqlSession.selectList("goods.selectListWeekList");
+	}
+
+	@Override
+	public void deleteWeekBatchView() throws Exception {
+		sqlSession.delete("goods.deleteWeekBatchView");
+	}
+
+	@Override
+	public void insertWeekView(GoodsDTO goodsDTO) throws Exception {
+		sqlSession.insert("goods.insertWeekView", goodsDTO);
+	}
+
+	@Override
+	public void resetWeekViewCnt() throws Exception {
+		sqlSession.update("goods.resetWeekViewCnt");
+	}
+
+	@Override
+	public void deleteMonthBatchView() throws Exception {
+		sqlSession.delete("goods.deleteMonthBatchView");
+	}
+
+	@Override
+	public List<GoodsDTO> selectListMonthList() throws Exception {
+		return sqlSession.selectList("goods.selectListMonthList");
+	}
+
+	@Override
+	public void insertMonthView(GoodsDTO goodsDTO) throws Exception {
+		sqlSession.insert("goods.insertMonthView", goodsDTO);
+	}
+
+	@Override
+	public void resetMonthViewCnt() throws Exception {
+		sqlSession.update("goods.resetMonthViewCnt");
+	}
+
+	@Override
+	public List<GoodsDTO> getSelectListGoodsSearch(String search) throws Exception {
+		return sqlSession.selectList("goods.getSelectListGoodsSearch", search);
+	}
+
+	@Override
+	public List<GoodsDTO> selectListRank() throws Exception {
+		return sqlSession.selectList("goods.selectListRank");
+	}
+
+	@Override
+	public int selectOneReplyCnt(int goodsCd) throws Exception {
+		return sqlSession.selectOne("goods.selectOneReplyCnt", goodsCd);
+	}
+
+	@Override
+	public List<GoodsDTO> selectListNewReply() throws Exception {
+		return sqlSession.selectList("goods.selectListNewReply");
+	}
+
+
+
 
 
 

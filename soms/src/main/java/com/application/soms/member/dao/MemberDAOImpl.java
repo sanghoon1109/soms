@@ -27,4 +27,15 @@ public class MemberDAOImpl implements MemberDAO {
 		return sqlSession.selectOne("member.selectCheckMemberId", memberId);
 	}
 
+	@Override
+	public String selectOnePasswd(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne("member.selectOnePasswd", memberDTO);
+	}
+
+	@Override
+	public void deleteMember(String memberId) throws Exception {
+		sqlSession.delete("member.deleteMember", memberId);
+	}
+
+
 }

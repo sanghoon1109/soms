@@ -26,7 +26,14 @@ public class GoodsDTO {
 	private String sort;
 	private String goodsFileName;
 	private Date enrollDt;
+	private String goodsVideoName;
 	
+	public String getGoodsVideoName() {
+		return goodsVideoName;
+	}
+	public void setGoodsVideoName(String goodsVideoName) {
+		this.goodsVideoName = goodsVideoName;
+	}
 	public int getGoodsCd() {
 		return goodsCd;
 	}
@@ -149,9 +156,9 @@ public class GoodsDTO {
 				+ ", quality=" + quality + ", classification=" + classification + ", subtitleSupport=" + subtitleSupport
 				+ ", contentIntro=" + contentIntro + ", views=" + views + ", dayViewCnt=" + dayViewCnt
 				+ ", weekViewCnt=" + weekViewCnt + ", monthViewCnt=" + monthViewCnt + ", director=" + director
-				+ ", sort=" + sort + ", goodsFileName=" + goodsFileName + ", enrollDt=" + enrollDt + "]";
+				+ ", sort=" + sort + ", goodsFileName=" + goodsFileName + ", enrollDt=" + enrollDt + ", goodsVideoName="
+				+ goodsVideoName + "]";
 	}
-	
 
 	
 

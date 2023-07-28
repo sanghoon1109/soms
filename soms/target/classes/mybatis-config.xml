@@ -11,6 +11,9 @@
 		<typeAlias type="com.application.soms.member.dto.MemberDTO" alias="MemberDTO" />
 		<typeAlias type="com.application.soms.goods.dto.GoodsDTO" alias="GoodsDTO" />
 		<typeAlias type="com.application.soms.goods.dto.ReplyDTO" alias="ReplyDTO" />
+		<typeAlias type="com.application.soms.goods.dto.GoodsBatchDTO" alias="GoodsBatchDTO" />
+		<typeAlias type="com.application.soms.admin.member.dto.AdminMemberDTO" alias="AdminMemberDTO" />
+		<typeAlias type="com.application.soms.payment.dto.PaymentDTO" alias="PaymentDTO" />
 	</typeAliases>
 
 

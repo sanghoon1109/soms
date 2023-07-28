@@ -1,0 +1,216 @@
+@charset "UTF-8";
+.clearfix:before,
+.clearfix:after {
+    display: table;
+
+    content: ' ';
+}
+.clearfix:after {
+    clear: both;
+}
+body {
+    background: #f0f0f0 !important;
+}
+.page-404 .outer {
+    position: absolute;
+    top: 0;
+
+    display: table;
+
+    width: 100%;
+    height: 100%;
+}
+.page-404 .outer .middle {
+    display: table-cell;
+
+    vertical-align: middle;
+}
+.page-404 .outer .middle .inner {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+}
+.page-404 .outer .middle .inner .inner-circle {
+    height: 300px;
+
+    border-radius: 50%;
+    background-color: #ffffff;
+}
+.page-404 .outer .middle .inner .inner-circle:hover i {
+    color: #39bbdb!important;
+    background-color: #f5f5f5;
+    box-shadow: 0 0 0 15px #39bbdb;
+}
+.page-404 .outer .middle .inner .inner-circle:hover span {
+    color: #39bbdb;
+}
+.page-404 .outer .middle .inner .inner-circle i {
+    font-size: 5em;
+    line-height: 1em;
+
+    float: right;
+
+    width: 1.6em;
+    height: 1.6em;
+    margin-top: -.7em;
+    margin-right: -.5em;
+    padding: 20px;
+
+    -webkit-transition: all .4s;
+            transition: all .4s;
+    text-align: center;
+
+    color: #f5f5f5!important;
+    border-radius: 50%;
+    background-color: #39bbdb;
+    box-shadow: 0 0 0 15px #f0f0f0;
+}
+.page-404 .outer .middle .inner .inner-circle span {
+    font-size: 11em;
+    font-weight: 700;
+    line-height: 1.2em;
+
+    display: block;
+
+    -webkit-transition: all .4s;
+            transition: all .4s;
+    text-align: center;
+
+    color: #e0e0e0;
+}
+.page-404 .outer .middle .inner .inner-status {
+    font-size: 20px;
+
+    display: block;
+
+    margin-top: 20px;
+    margin-bottom: 5px;
+
+    text-align: center;
+
+    color: #39bbdb;
+}
+.page-404 .outer .middle .inner .inner-detail {
+    line-height: 1.4em;
+
+    display: block;
+
+    margin-bottom: 10px;
+
+    text-align: center;
+
+    color: #999999;
+}
+
+.button {
+    &.dark {
+        --background: #2F3545;
+        --shadow: 0 2px 8px -1px #{rgba(#151924, .32)};
+        --shadow-hover: 0 4px 20px -2px #{rgba(#151924, .5)};
+    }
+    &.white {
+        --background: #fff;
+        --text: #275efe;
+        --shadow: 0 2px 8px -1px #{rgba(#121621, .04)};
+        --shadow-hover: 0 4px 20px -2px #{rgba(#121621, .12)};
+    }
+    &.fast {
+        --duration: .32s;
+    }
+}
+
+.button {
+    --background: #275efe;
+    --text: #fff;
+    --font-size: 16px;
+    --duration: .44s;
+    --move-hover: -4px;
+    --shadow: 0 2px 8px -1px #{rgba(#275efe, .32)};
+    --shadow-hover: 0 4px 20px -2px #{rgba(#275efe, .5)};
+    --font-shadow: var(--font-size);
+    padding: 16px 32px;
+    font-family: 'Roboto';
+    font-weight: 500;
+    line-height: var(--font-size);
+    border-radius: 24px;
+    display: block;
+    outline: none;
+    text-decoration: none;
+    font-size: var(--font-size);
+    letter-spacing: .5px;
+    background: var(--background);
+    color: var(--text);
+    box-shadow: var(--shadow);
+    transform: translateY(var(--y)) translateZ(0);
+    transition: transform var(--duration) ease, box-shadow var(--duration) ease;
+    div {
+        display: flex;
+        overflow: hidden;
+        text-shadow: 0 var(--font-shadow) 0 var(--text);
+        span {
+            display: block;
+            backface-visibility: hidden;
+            font-style: normal;
+            transition: transform var(--duration) ease;
+            transform: translateY(var(--m)) translateZ(0);
+            $i: 1;
+            @while $i < 12 {
+                &:nth-child(#{$i}) {
+                    transition-delay: $i / 20 + s;
+                }
+                $i: $i + 1;
+            }
+        }
+    }
+    &:hover {
+        --y: var(--move-hover);
+        --shadow: var(--shadow-hover);
+        span {
+            --m: calc(var(--font-size) * -1);
+        }
+    }
+    &.reverse {
+        --font-shadow: calc(var(--font-size) * -1);
+        &:hover {
+            span {
+                --m: calc(var(--font-size));
+            }
+        }
+    }
+}
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: inherit;
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+}
+
+// Center & dribbble
+body {
+    min-height: 100vh;
+    display: flex;
+    font-family: 'Roboto', Arial;
+    justify-content: center;
+    align-items: center;
+    background: #E4ECFA;
+    .button {
+        margin: 0 12px;
+    }
+    .dribbble {
+        position: fixed;
+        display: block;
+        right: 20px;
+        bottom: 20px;
+        img {
+            display: block;
+            height: 28px;
+        }
+    }
+}

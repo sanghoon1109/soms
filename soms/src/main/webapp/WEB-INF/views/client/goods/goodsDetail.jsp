@@ -1,14 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script>
-	alert("${goodsDTO.goodsCd} , ${memberDTO.memberId}, ${memberDTO.profile}");
-</script>
 </head>
 <body>
 	<!-- Breadcrumb Begin -->
@@ -33,7 +31,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" data-setbg="${goodsDTO.goodsFileName }">
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                            <div class="comment"><i class="fa fa-comments"></i> ${replyCnt }</div>
                             <div class="view"><i class="fa fa-eye"></i> ${goodsDTO.views }</div>
                         </div>
                     </div>
@@ -90,15 +88,31 @@
                             <div class="section-title">
                                 <h5>Reviews</h5>
                             </div>
-                            <div class="anime__review__item">
-                                <div class="anime__review__item__pic">
-                                    <img src="img/anime/review-6.jpg" alt="">
-                                </div>
-                                <div class="anime__review__item__text">
-                                    <h6>Louis Tyler - <span>20 Hour ago</span></h6>
-                                    <p>Where is the episode 15 ? Slow update! Tch</p>
-                                </div>
-                            </div>
+                           	<c:choose>
+                           		<c:when test="${empty replyList }">
+                           			<h3 style='color:white;'>등록된 댓글이 없습니다.</h3>
+                           		</c:when>
+                           		<c:otherwise>       
+                           			 <c:forEach var="replyDTO" items="${replyList }">
+			                            <div class="anime__review__item">
+			                                <div class="anime__review__item__pic">
+			                                	<c:choose>
+			                                		<c:when test="${replyDTO.memberProfile eq ''}">
+			                                 		   <img src="${contextPath }/resources/bootstrap/img/default_profile.png" alt="기본프로필">			                                		
+			                                		</c:when>
+			                                		<c:otherwise>
+			                                 		   <img src="${contextPath }/myPage/thumbnails?fileName=${replyDTO.memberProfile}" alt="프로필">			                                		
+			                                		</c:otherwise>
+			                                	</c:choose>
+			                                </div>
+			                                <div class="anime__review__item__text">
+			                                    <h6>${replyDTO.memberNm } - <span><fmt:formatDate value="${replyDTO.replyDt }" pattern="yyyy년MM월dd일"/></span></h6>
+			                                    <p>${replyDTO.replyContent }</p>
+			                                </div>
+			                            </div>
+                           			 </c:forEach>                 		
+                           		</c:otherwise>
+                           	</c:choose>
                         </div>
                         <div class="anime__details__form">
                             <div class="section-title">
@@ -119,26 +133,13 @@
                             <div class="section-title">
                                 <h5>you might like...</h5>
                             </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-2.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-3.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg" data-setbg="img/sidebar/tv-4.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                            </div>
+                            <c:forEach var="goodsDTO" items="${rankList }">
+			                        <div class="product__sidebar__view__item set-bg" data-setbg="${goodsDTO.goodsFileName }">
+	                                <div class="ep">${goodsDTO.sort }</div>
+	                                <div class="view"><i class="fa fa-eye"></i>${goodsDTO.views }</div>
+	                                <h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}&memberId=${memberDTO.memberId }">${goodsDTO.goodsNm }</a></h5>
+	                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

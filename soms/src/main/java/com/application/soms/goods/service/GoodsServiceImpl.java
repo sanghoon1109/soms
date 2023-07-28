@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.application.soms.goods.dao.GoodsDAO;
+import com.application.soms.goods.dto.GoodsBatchDTO;
 import com.application.soms.goods.dto.GoodsDTO;
 import com.application.soms.goods.dto.ReplyDTO;
 import com.application.soms.member.dto.MemberDTO;
@@ -76,36 +77,43 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.selectGoodsDetail(goodsCd);
 	}
 
-	@Override
-	@Scheduled(cron="59 58 23 * * *")
-	@Transactional
-	public List<GoodsDTO> getDayViewCnt() throws Exception {
-		System.out.println("저녁 12시 배치");
-		
-		goodsDAO.updateDayViewCnt();
-		return goodsDAO.getDayViewList(); // 배치 테이블 따로 생성해서 MAIN에 셀렉트
-	}
+	
 	
 	@Override
 	@Scheduled(cron="59 59 23 * * *")
 	@Transactional
-	public void resetDayViewCnt() throws Exception {
-		System.out.println("저녁 12시 금일 조회수 초기화");	
+	public void insertDayView() throws Exception {
+		goodsDAO.updateDayViewCnt();	
+		goodsDAO.deleteBatchView();
+		List<GoodsDTO> goodsList = goodsDAO.selectListDayList();
+		for (GoodsDTO goodsDTO : goodsList) {
+			goodsDAO.insertDayView(goodsDTO);
+		}
 		goodsDAO.resetDayViewCnt();
 	}
-
+	
 	@Override
 	@Scheduled(cron="59 57 23 * * MON")
 	@Transactional
 	public void getWeekViewCnt() throws Exception {
-		System.out.println("한주치 조회수");
-		
+		goodsDAO.deleteWeekBatchView();
+		List<GoodsDTO> goodsList = goodsDAO.selectListWeekList();
+		for (GoodsDTO goodsDTO : goodsList) {	
+			goodsDAO.insertWeekView(goodsDTO);
+		}
+		goodsDAO.resetWeekViewCnt();
 	}
 
 	@Override
 	@Scheduled(cron="0 0 0 1 * *")
 	@Transactional
 	public void getMonthViewCnt() throws Exception {
+		goodsDAO.deleteMonthBatchView();
+		List<GoodsDTO> goodsList = goodsDAO.selectListMonthList();
+		for (GoodsDTO goodsDTO : goodsList) {
+			goodsDAO.insertMonthView(goodsDTO);
+		}
+		goodsDAO.resetMonthViewCnt();
 		
 	}
 
@@ -118,6 +126,47 @@ public class GoodsServiceImpl implements GoodsService {
 	public void addReply(ReplyDTO replyDTO) throws Exception {
 		goodsDAO.insertReply(replyDTO);
 	}
+
+	@Override
+	public List<ReplyDTO> getReplyList(int goodsCd) throws Exception {
+		return goodsDAO.selectListReply(goodsCd);
+	}
+
+	@Override
+	public List<GoodsBatchDTO> getDayViewList() throws Exception {
+		return goodsDAO.selectListDayView();
+	}
+
+	@Override
+	public List<GoodsBatchDTO> getWeekViewList() throws Exception {
+		return goodsDAO.selectListWeekView();
+	}
+
+	@Override
+	public List<GoodsBatchDTO> getMonthViewList() throws Exception {
+		return goodsDAO.selectListMonthView();
+	}
+
+	@Override
+	public List<GoodsDTO> goodsSearchList(String search) throws Exception {
+		return goodsDAO.getSelectListGoodsSearch(search);
+	}
+
+	@Override
+	public List<GoodsDTO> getRankList() throws Exception {
+		return goodsDAO.selectListRank();
+	}
+
+	@Override
+	public int getReplyCnt(int goodsCd) throws Exception {
+		return goodsDAO.selectOneReplyCnt(goodsCd);
+	}
+
+	@Override
+	public List<GoodsDTO> getNewReplyList() throws Exception {
+		return goodsDAO.selectListNewReply();
+	}
+
 
 
 

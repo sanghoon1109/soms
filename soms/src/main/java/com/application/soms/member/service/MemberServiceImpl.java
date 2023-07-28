@@ -43,4 +43,21 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Override
+	public String checkDuplicatePasswd(MemberDTO memberDTO) throws Exception {
+		
+		if(bCryptPasswordEncoder.matches(memberDTO.getPasswd(), memberDAO.selectOnePasswd(memberDTO))) {
+			return "equals";
+		}
+		
+		return null;
+	}
+
+	@Override
+	public void removeMember(String memberId) throws Exception {
+		memberDAO.deleteMember(memberId);
+	}
+
+
+
 }

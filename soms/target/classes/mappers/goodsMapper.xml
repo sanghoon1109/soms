@@ -131,16 +131,6 @@
 				DAY_VIEW_CNT = 0
 	</update>
 	
-	<select id="getDayViewList" resultType="GoodsDTO">
-		SELECT
-				*
-		FROM
-				GOODS
-		ORDER BY
-				DAY_VIEW_CNT DESC
-		LIMIT 
-				0, 6
-	</select>
 	
 	<select id="selectOneMemberId" parameterType="String" resultType="MemberDTO">
 		SELECT
@@ -167,5 +157,223 @@
 			#{goodsCd}
 		)
 	</insert>
+	
+	<select id="selectListReply" parameterType="int" resultType="ReplyDTO">
+		SELECT
+				*
+		FROM
+				REPLY
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</select>
+	
+	<select id="selectListDayList" resultType="GoodsDTO">
+		SELECT 
+				*
+		FROM
+				GOODS
+		ORDER BY
+				DAY_VIEW_CNT DESC
+		LIMIT
+				0,4
+	</select>
+	
+	<insert id="insertDayView" parameterType="GoodsDTO">
+		INSERT INTO GOODS_BATCH(
+			GOODS_CD,
+			GOODS_NM,
+			GOODS_FILE_NAME,
+			SORT,
+			DAY_VIEW,
+			BATCH_DT	
+		)
+		VALUES(
+			#{goodsCd},
+			#{goodsNm},
+			#{goodsFileName},
+			#{sort},
+			#{dayViewCnt},
+			NOW()
+		) 
+	</insert>
+	
+	<select id="selectListDayView" resultType="GoodsBatchDTO">
+		SELECT
+				*
+		FROM
+				GOODS_BATCH
+		ORDER BY
+				DAY_VIEW DESC
+		LIMIT
+				0,4
+	</select>
+	
+	<delete id="deleteBatchView">
+		DELETE FROM
+				GOODS_BATCH
+		WHERE
+				DAY_VIEW > 0
+	</delete>
+	
+	<select id="selectListWeekView" resultType="GoodsBatchDTO">
+		SELECT
+				*
+		FROM
+				GOODS_BATCH
+		ORDER BY
+				WEEK_VIEW DESC
+		LIMIT
+				0,4
+	</select>
 
+	<select id="selectListMonthView" resultType="GoodsBatchDTO">
+		SELECT
+				*
+		FROM
+				GOODS_BATCH
+		ORDER BY
+				MONTH_VIEW DESC
+		LIMIT
+				0,4
+	</select>
+	
+	
+	<select id="selectListWeekList" resultType="GoodsDTO">
+		SELECT 
+				*
+		FROM
+				GOODS
+		ORDER BY
+				WEEK_VIEW_CNT DESC
+		LIMIT
+				0,4
+	</select>
+	
+	<delete id="deleteWeekBatchView">
+		DELETE FROM
+				GOODS_BATCH
+		WHERE
+				WEEK_VIEW > 0		
+	</delete>	
+	
+	<insert id="insertWeekView" parameterType="GoodsDTO">
+		INSERT INTO GOODS_BATCH(
+			GOODS_CD,
+			GOODS_NM,
+			GOODS_FILE_NAME,
+			SORT,
+			WEEK_VIEW,
+			BATCH_DT	
+		)
+		VALUES(
+			#{goodsCd},
+			#{goodsNm},
+			#{goodsFileName},
+			#{sort},
+			#{weekViewCnt},
+			NOW()
+		)
+	</insert>
+	
+	<update id="resetWeekViewCnt">
+		UPDATE
+				GOODS
+		SET
+				WEEK_VIEW_CNT = 0
+	</update>
+	
+	<delete id="deleteMonthBatchView">
+		DELETE FROM
+				GOODS_BATCH
+		WHERE
+				MONTH_VIEW > 0		
+	</delete>	
+	
+	<select id="selectListMonthList" resultType="GoodsDTO">
+		SELECT 
+				*
+		FROM
+				GOODS
+		ORDER BY
+				MONTH_VIEW_CNT DESC
+		LIMIT
+				0,4		
+	</select>
+	
+	<insert id="insertMonthView" parameterType="GoodsDTO">
+		INSERT INTO GOODS_BATCH(
+			GOODS_CD,
+			GOODS_NM,
+			GOODS_FILE_NAME,
+			SORT,
+			MONTH_VIEW,
+			BATCH_DT	
+		)
+		VALUES(
+			#{goodsCd},
+			#{goodsNm},
+			#{goodsFileName},
+			#{sort},
+			#{monthViewCnt},
+			NOW()
+		)		
+	</insert>
+	
+	<update id="resetMonthViewCnt">
+		UPDATE
+				GOODS
+		SET
+				MONTH_VIEW_CNT = 0		
+	</update>
+	
+	<select id="getSelectListGoodsSearch" parameterType="String" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		WHERE
+					GOODS_NM  		LIKE CONCAT('%' , #{search} , '%') OR
+					SORT 	  		LIKE CONCAT('%' , #{search} , '%') OR
+					DIRECTOR 		LIKE CONCAT('%' , #{search} , '%') OR
+					CATEGORY 		LIKE CONCAT('%' , #{search} , '%') OR
+					NATION 			LIKE CONCAT('%' , #{search} , '%') OR
+					GENRE 			LIKE CONCAT('%' , #{search} , '%') OR
+					APPEARANCE  	LIKE CONCAT('%' , #{search} , '%') OR
+					CLASSIFICATION  LIKE CONCAT('%' , #{search} , '%') 
+					
+	</select>
+	
+	<select id="selectListRank" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+				GOODS
+		ORDER BY
+				VIEWS DESC
+		LIMIT 
+				5
+	</select>
+	
+	<select id="selectOneReplyCnt" parameterType="int" resultType="int">
+		SELECT
+				COUNT(*)
+		FROM
+				REPLY
+		WHERE
+				GOODS_CD = #{goodsCd}
+	</select>
+	
+	<select id="selectListNewReply" resultType="GoodsDTO">
+		SELECT
+				*
+		FROM
+		        GOODS G
+				JOIN  REPLY R
+				  ON  R.GOODS_CD = G.GOODS_CD
+		ORDER BY
+				R.REPLY_ID DESC
+		LIMIT
+				4		
+	</select>
+	
 </mapper>

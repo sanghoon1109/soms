@@ -7,16 +7,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-
 	$().ready(function(){
 		$("#onePageViewCnt").val("${onePageViewCnt}");
 	});
 	
 	function getGoodsList() {
-		console.log("onepageviewcnt" + $("#onePageViewCnt").val());
 		var url = "${contextPath }/goods/goodsList"
 		    url += "?onePageViewCnt=" + $("#onePageViewCnt").val();
 			url += "&sort=" + "${sort}"
+			url += "&memberId=" + "${sessionScope.memberId }"
 			
 		location.href = url;
 	
@@ -83,25 +82,25 @@
 					                                      	      	<li>Active</li>
 					                                            	<li>Movie</li>
 					                                        	</ul>
-					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}">${goodsDTO.goodsNm }</a></h5>
+					                                       	 	<h5><a href="${contextPath }/goods/goodsDetail?goodsCd=${goodsDTO.goodsCd}&memberId=${memberDTO.memberId}">${goodsDTO.goodsNm }</a></h5>
 					                                    	</div>
 					                                	</div>
                          						   </div>						
 			                   			</c:forEach>
 			                   		 </c:otherwise>                  	
 			                   	</c:choose>
+                </div>
                     <div class="product__pagination">         
                     	<c:if test="${startPage > 5}">
-	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${startPage - 5}&onePageViewCnt=${onePageViewCnt }&sort=${sort}"><i class="fa fa-angle-double-left"></i></a>
+	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${startPage - 5}&onePageViewCnt=${onePageViewCnt }&sort=${sort}&memberId=${sessionScope.memberId }"><i class="fa fa-angle-double-left"></i></a>
 	                    </c:if>
 	                    <c:forEach var="i" begin="${startPage }" end="${endPage }">
-	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${i }&onePageViewCnt=${onePageViewCnt }&sort=${sort}">${i }</a>
+	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${i }&onePageViewCnt=${onePageViewCnt }&sort=${sort}&memberId=${sessionScope.memberId }">${i }</a>
 	                    </c:forEach>
 	                    <c:if test="${endPage != allPageCnt && endPage >= 5}">
-	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${startPage + 5}&onePageViewCnt=${onePageViewCnt }&sort=${sort}"><i class="fa fa-angle-double-right"></i></a>
+	                        <a href="${contextPath }/goods/goodsList?currentPageNumber=${startPage + 5}&onePageViewCnt=${onePageViewCnt }&sort=${sort}&memberId=${sessionScope.memberId }"><i class="fa fa-angle-double-right"></i></a>
 	                    </c:if>
                     </div>
-                </div>
                 </div>
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-8">
@@ -111,102 +110,66 @@
                                 <h5>Top Views</h5>
                             </div>
                             <ul class="filter__controls">
-                                <li class="active" data-filter="*">Day</li>
+                                <li class="active" data-filter=".day">Day</li>
                                 <li data-filter=".week">Week</li>
                                 <li data-filter=".month">Month</li>
-                                <li data-filter=".years">Years</li>
                             </ul>
-                            <div class="filter__gallery">
-                                <div class="product__sidebar__view__item set-bg mix day years"
-                                data-setbg="img/sidebar/tv-1.jpg">
-                                <div class="ep">18 / ?</div>
-                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                                <h5><a href="#">Boruto: Naruto next generations</a></h5>
-                            </div>
-                            <div class="product__sidebar__view__item set-bg mix month week"
-                            data-setbg="img/sidebar/tv-2.jpg">
-                            <div class="ep">18 / ?</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                            <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                        </div>
-                        <div class="product__sidebar__view__item set-bg mix week years"
-                        data-setbg="img/sidebar/tv-3.jpg">
-                        <div class="ep">18 / ?</div>
-                        <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                        <h5><a href="#">Sword art online alicization war of underworld</a></h5>
-                    </div>
-                    <div class="product__sidebar__view__item set-bg mix years month"
-                    data-setbg="img/sidebar/tv-4.jpg">
-                    <div class="ep">18 / ?</div>
-                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                    <h5><a href="#">Fate/stay night: Heaven's Feel I. presage flower</a></h5>
-                </div>
-                <div class="product__sidebar__view__item set-bg mix day"
-                data-setbg="img/sidebar/tv-5.jpg">
-                <div class="ep">18 / ?</div>
-                <div class="view"><i class="fa fa-eye"></i> 9141</div>
-                <h5><a href="#">Fate stay night unlimited blade works</a></h5>
-            </div>
-        </div>
+		                    <div class="filter__gallery">
+                            <c:choose>
+                            	<c:when test="${empty dayList }">
+                           			 <div class="product__item">
+		                            </div>
+                            	</c:when>
+                            	<c:otherwise>
+                            	<c:forEach var="dayDTO" items="${dayList }">
+		                                <div class="product__sidebar__view__item set-bg mix day" data-setbg="${dayDTO.goodsFileName }">
+		                                <div class="ep">${dayDTO.sort }</div>
+		                                <div class="view"><i class="fa fa-eye"></i>${dayDTO.dayView }</div>
+		                                <h5><a href="javascript:processId(${dayDTO.goodsCd})">${dayDTO.goodsNm }</a></h5>
+		                            </div>
+                            	</c:forEach>
+                            	</c:otherwise>
+                            </c:choose>
+							<c:choose>
+								<c:when test="${empty weekList }">
+									<div class="product__item">
+									</div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="weekDTO" items="${weekList }">
+										<div class="product__sidebar__view__item set-bg mix week" data-setbg="${weekDTO.goodsFileName }">
+											<div class="ep">${weekDTO.sort }</div>
+											<div class="view">
+												<i class="fa fa-eye"></i>${weekDTO.weekView }
+											</div>
+											<h5>
+												<a href="javascript:processId(${weekDTO.goodsCd})">${weekDTO.goodsNm }</a>
+											</h5>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							<c:choose>
+								<c:when test="${empty weekList }">
+									<div class="product__item"></div>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="monthDTO" items="${monthList }">
+										<div class="product__sidebar__view__item set-bg mix month" data-setbg="${monthDTO.goodsFileName }">
+											<div class="ep">${monthDTO.sort }</div>
+											<div class="view">
+												<i class="fa fa-eye"></i>${monthDTO.monthView }
+											</div>
+											<h5>
+												<a href="javascript:processId(${monthDTO.goodsCd})">${monthDTO.goodsNm }</a>
+											</h5>
+										</div>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							</div>
+						</div>
     </div>
-    <div class="product__sidebar__comment">
-        <div class="section-title">
-            <h5>New Comment</h5>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-1.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">The Seven Deadly Sins: Wrath of the Gods</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-2.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Shirogane Tamashii hen Kouhan sen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-3.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Kizumonogatari III: Reiket su-hen</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-        <div class="product__sidebar__comment__item">
-            <div class="product__sidebar__comment__item__pic">
-                <img src="img/sidebar/comment-4.jpg" alt="">
-            </div>
-            <div class="product__sidebar__comment__item__text">
-                <ul>
-                    <li>Active</li>
-                    <li>Movie</li>
-                </ul>
-                <h5><a href="#">Monogatari Series: Second Season</a></h5>
-                <span><i class="fa fa-eye"></i> 19.141 Viewes</span>
-            </div>
-        </div>
-    </div>
-</div>
 </div>
 </div>
 </div>

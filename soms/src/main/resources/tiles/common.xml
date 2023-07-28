@@ -7,14 +7,25 @@
  		<put-attribute name="footer" value="/WEB-INF/views/common/layout/footer.jsp"/>	
  	</definition>
  	
+	<definition name="admin"  template="/WEB-INF/views/admin/layout/layout.jsp">		
+ 		<put-attribute name="header" value="/WEB-INF/views/admin/layout/header.jsp"/>	
+ 		<put-attribute name="footer" value="/WEB-INF/views/admin/layout/footer.jsp"/>	
+ 		<put-attribute name="side" value="/WEB-INF/views/admin/layout/side.jsp"/>	
+ 	</definition>
+ 	
  	<definition name="/main"  extends="default">	
  		<put-attribute name="body" value="/WEB-INF/views/common/layout/main.jsp"/>	
  		<put-attribute name="title" value="메인"/>	
  	</definition>
  	
+ 	<definition name="/admin/main"  extends="admin">	
+ 		<put-attribute name="body" value="/WEB-INF/views/admin/layout/adminMain.jsp"/>	
+ 		<put-attribute name="title" value="관리자메인"/>	
+ 	</definition>
+ 	
 	 <definition name="/contact"  extends="default">	
  		<put-attribute name="body" value="/WEB-INF/views/common/layout/contact.jsp"/>	
- 		<put-attribute name="title" value="contact"/>	
+ 		<put-attribute name="title" value="문의"/>	
  	</definition>
  	
 	 <definition name="/customerCenter"  extends="default">	

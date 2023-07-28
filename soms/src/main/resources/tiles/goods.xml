@@ -17,4 +17,9 @@
  		<put-attribute name="title" value="콘텐츠 시청"/>	
  	</definition>
  	
+	<definition name="/goods/goodsSearch"  extends="default">	
+ 		<put-attribute name="body" value="/WEB-INF/views/client/goods/goodsSearch.jsp"/>	
+ 		<put-attribute name="title" value="콘텐츠 검색"/>	
+ 	</definition>
+ 	
 </tiles-definitions>

@@ -33,7 +33,7 @@ public class MemberController {
 	
 	@PostMapping("/signup")
 	public ResponseEntity<Object> signUp(MemberDTO memberDTO , HttpServletRequest request) throws Exception {
-	    
+
 		memberService.addMember(memberDTO);
 		
 		String jsScript = "<script>";
@@ -110,6 +110,37 @@ public class MemberController {
 		return new ModelAndView("/member/forgetPass");
 	}
 	
+	@PostMapping("/checkDuplicatedPasswd")
+	public ResponseEntity<Object> checkDuplicatedPasswd(MemberDTO memberDTO) throws Exception {
+		return new ResponseEntity<Object>(memberService.checkDuplicatePasswd(memberDTO), HttpStatus.OK);
+	}
+	
+	@GetMapping("/removeMember")
+	public ResponseEntity<String> removeMember(@RequestParam("memberId") String memberId, HttpServletRequest request) throws Exception {
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		memberService.removeMember(memberId);
+		
+		String jsScript = "<script>";
+		jsScript += "location.href='" + request.getContextPath() + "/';";
+		jsScript += "</script>";
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<String>(jsScript, responseHeaders, HttpStatus.OK);
+	}
+
+	@GetMapping("/membership")
+	public ModelAndView membership(String memberId) {
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("/member/membership");
+		mv.addObject("memberId", memberId);
+		
+		return mv;
+	}
 	
 	
 }

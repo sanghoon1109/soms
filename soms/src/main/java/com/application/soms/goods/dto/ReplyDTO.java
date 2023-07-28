@@ -57,6 +57,7 @@ public class ReplyDTO {
 	public void setGoodsCd(int goodsCd) {
 		this.goodsCd = goodsCd;
 	}
+	
 	@Override
 	public String toString() {
 		return "ReplyDTO [replyId=" + replyId + ", memberId=" + memberId + ", memberNm=" + memberNm + ", memberProfile="

@@ -14,13 +14,12 @@ public class MemberDTO {
 	private String dateBirth;
 	private String hp;
 	private String smsstsYn;
-	private String email;
-	private String emailstsYn;
 	private String zipcode;
 	private String roadAddress;
 	private String jibunAddress;
 	private String namujiAddress;
 	private Date joinDt;
+	private String membership;
 	private String profile;
 	
 	public String getMemberId() {
@@ -65,18 +64,6 @@ public class MemberDTO {
 	public void setSmsstsYn(String smsstsYn) {
 		this.smsstsYn = smsstsYn;
 	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getEmailstsYn() {
-		return emailstsYn;
-	}
-	public void setEmailstsYn(String emailstsYn) {
-		this.emailstsYn = emailstsYn;
-	}
 	public String getZipcode() {
 		return zipcode;
 	}
@@ -107,6 +94,12 @@ public class MemberDTO {
 	public void setJoinDt(Date joinDt) {
 		this.joinDt = joinDt;
 	}
+	public String getMembership() {
+		return membership;
+	}
+	public void setMembership(String membership) {
+		this.membership = membership;
+	}
 	public String getProfile() {
 		return profile;
 	}
@@ -117,12 +110,13 @@ public class MemberDTO {
 	@Override
 	public String toString() {
 		return "MemberDTO [memberId=" + memberId + ", memberNm=" + memberNm + ", passwd=" + passwd + ", sex=" + sex
-				+ ", dateBirth=" + dateBirth + ", hp=" + hp + ", smsstsYn=" + smsstsYn + ", email=" + email
-				+ ", emailstsYn=" + emailstsYn + ", zipcode=" + zipcode + ", roadAddress=" + roadAddress
-				+ ", jibunAddress=" + jibunAddress + ", namujiAddress=" + namujiAddress + ", joinDt=" + joinDt
-				+ ", profile=" + profile + "]";
+				+ ", dateBirth=" + dateBirth + ", hp=" + hp + ", smsstsYn=" + smsstsYn + ", zipcode=" + zipcode
+				+ ", roadAddress=" + roadAddress + ", jibunAddress=" + jibunAddress + ", namujiAddress=" + namujiAddress
+				+ ", joinDt=" + joinDt + ", membership=" + membership + ", profile=" + profile + "]";
 	}
 	
+
+
 	
 
 	

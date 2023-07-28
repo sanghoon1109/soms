@@ -3,7 +3,7 @@
 <tiles-definitions>
 
 	<definition name="/myPage/myInfo"  extends="default">	
- 		<put-attribute name="body" value="/WEB-INF/views/client/myPage/myinfo.jsp"/>	
+ 		<put-attribute name="body" value="/WEB-INF/views/client/myPage/myInfo.jsp"/>	
  		<put-attribute name="title" value="내 정보"/>	
  	</definition>
  	

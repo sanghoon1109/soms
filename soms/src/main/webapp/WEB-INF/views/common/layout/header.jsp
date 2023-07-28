@@ -26,7 +26,7 @@
                                 <li><a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
                                     <ul class="dropdown">
                                         <li><a href="./categories.html">Categories</a></li>
-                                        <li><a href="./anime-details.html">Anime Details</a></li>
+                                        <li><a href="${contextPath }/member/membership">membership</a></li>
                                         <li><a href="./anime-watching.html">Anime Watching</a></li>
                                         <li><a href="./blog-details.html">Blog Details</a></li>
                                         <li><a href="${contextPath }/member/signup">Sign Up</a></li>
@@ -41,18 +41,18 @@
                 </div>
                 <div class="col-lg-2">
                     <div class="header__right">
-                        <a href="#" class="search-switch"><span class="icon_search"></span></a>
                         <c:choose>
-                    		<c:when test="${sessionScope.memberId eq null }">
-                    		<div class="header__right__auth">
-		                           <a href="${contextPath }/member/login">Login</a>
-		                           <a href="${contextPath }/member/signup">Signup</a>
-		                    </div>
-                    		</c:when>
+                    			<c:when test="${sessionScope.memberId eq null }">
+		                    		<div class="header__right__auth">
+				                           <a href="${contextPath }/member/login">Login</a>
+				                           <a href="${contextPath }/member/signup">Signup</a>
+				                    </div>
+	                    		</c:when>
                     		<c:otherwise>
 		                        <div class="header__right__auth">
+								   <a href="#" class="search-switch"><span class="icon_search"></span></a>
 		                           <a href="${contextPath }/member/logout">logout</a>
-                       			   <a href="${contextPath }/myPage/myInfo"><span class="icon_profile"></span></a>
+                       			   <a href="${contextPath }/myPage/myInfo?memberId=${sessionScope.memberId}"><span class="icon_profile"></span></a>
 		                        </div>
                     		</c:otherwise>
                     	</c:choose>
