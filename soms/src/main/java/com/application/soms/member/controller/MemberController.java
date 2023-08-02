@@ -58,7 +58,8 @@ public class MemberController {
 	public ResponseEntity<Object> login(MemberDTO memberDTO, HttpServletRequest request) throws Exception {
 		
 		String jsScript = "";
-		if(memberService.login(memberDTO)) {		
+		
+		if(memberService.login(memberDTO).equals("true")) {
 			HttpSession session = request.getSession();
 			session.setAttribute("memberId", memberDTO.getMemberId());
 			session.setAttribute("role", "client");
@@ -68,7 +69,7 @@ public class MemberController {
 			jsScript += "location.href='" + request.getContextPath() + "/';";
 			jsScript += "</script>";		
 		}
-		else {	
+		else {
 			jsScript += "<script>";
 			jsScript += "alert('아이디와 비밀번호를 확인해주세요');";
 			jsScript += " history.go(-1);";
@@ -140,6 +141,15 @@ public class MemberController {
 		mv.addObject("memberId", memberId);
 		
 		return mv;
+	}
+	
+	@PostMapping("/checkMembership")
+	public ResponseEntity<String> checkMembership(@RequestParam("memberId") String memberId) throws Exception {
+		
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/html; charset=utf-8");
+		
+		return new ResponseEntity<String>(memberService.checkMembership(memberId), responseHeaders, HttpStatus.OK);
 	}
 	
 	

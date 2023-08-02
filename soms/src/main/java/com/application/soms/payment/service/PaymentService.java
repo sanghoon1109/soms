@@ -8,5 +8,8 @@ public interface PaymentService {
  	public void phonePayment(PaymentDTO paymentDTO) throws Exception;
  	public void cardPayment(PaymentDTO paymentDTO) throws Exception;
  	public void daysLeftDeduction() throws Exception;
-	
+	public void addTotalPayment(PaymentDTO paymentDTO) throws Exception;
+ 	public boolean getExistingPaymentId(PaymentDTO paymentDTO) throws Exception;
+ 	public void existPhonePayment(PaymentDTO paymentDTO) throws Exception;
+ 	public void existCardPayment(PaymentDTO paymentDTO) throws Exception;
 }

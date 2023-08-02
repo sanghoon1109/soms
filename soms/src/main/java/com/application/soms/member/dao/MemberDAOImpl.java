@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.application.soms.member.dto.MemberDTO;
+import com.application.soms.payment.dto.PaymentDTO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
@@ -35,6 +36,16 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public void deleteMember(String memberId) throws Exception {
 		sqlSession.delete("member.deleteMember", memberId);
+	}
+
+	@Override
+	public PaymentDTO selectOnePaymentMember(String memberId) throws Exception {
+		return sqlSession.selectOne("member.selectOnePaymentMember", memberId);
+	}
+
+	@Override
+	public String selectCheckMembership(String memberId) throws Exception {
+		return sqlSession.selectOne("member.selectCheckMembership", memberId);
 	}
 
 

@@ -48,5 +48,6 @@
 	
 	<task:annotation-driven />	
 	
+	<aop:aspectj-autoproxy />
 	
 </beans:beans>

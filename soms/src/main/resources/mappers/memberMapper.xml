@@ -49,5 +49,22 @@
 				MEMBER_ID = #{memberId}				
 	</delete>
 	
+	<select id="selectOnePaymentMember" parameterType="String" resultType="PaymentDTO">
+		SELECT
+				*
+		FROM
+				PAYMENT
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
+	<select id="selectCheckMembership" parameterType="String" resultType="String">
+		SELECT
+				MEMBERSHIP
+		FROM
+				PAYMENT
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
 
 </mapper>

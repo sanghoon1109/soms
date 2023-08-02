@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.application.soms.member.dto.MemberDTO;
 import com.application.soms.myPage.dao.MyPageDAO;
+import com.application.soms.payment.dto.PaymentDTO;
 
 @Service
 public class MyPageServiceImpl implements MyPageService {
@@ -46,6 +47,11 @@ public class MyPageServiceImpl implements MyPageService {
 	@Override
 	public void changeProfile(MemberDTO memberDTO) throws Exception {
 		myPageDAO.updateReplyProfile(memberDTO);
+	}
+
+	@Override
+	public PaymentDTO getMembership(String memberId) throws Exception {
+		return myPageDAO.selectOneMembership(memberId);
 	}
 	
 	

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.application.soms.member.dto.MemberDTO;
+import com.application.soms.payment.dto.PaymentDTO;
 
 @Repository
 public class MyPageDAOImpl implements MyPageDAO {
@@ -35,6 +36,11 @@ public class MyPageDAOImpl implements MyPageDAO {
 	@Override
 	public void updateReplyProfile(MemberDTO memberDTO) throws Exception {
 		sqlSession.update("myPage.updateReplyProfile", memberDTO);
+	}
+
+	@Override
+	public PaymentDTO selectOneMembership(String memberId) throws Exception {
+		return sqlSession.selectOne("myPage.selectOneMembership", memberId);
 	}
 	
 }

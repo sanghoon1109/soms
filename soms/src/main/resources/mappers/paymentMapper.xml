@@ -47,6 +47,7 @@
 			CARD_PAY_MONTH,
 			MEMBERSHIP,
 			DAYS_LEFT,
+			TOTAL_AMOUNT_PAYMENT,
 			PAY_ORDER_TIME			
 		) VALUES (
 			#{memberId},
@@ -58,6 +59,7 @@
 			#{cardPayMonth},
 			#{membership},
 			30,
+			0,
 			NOW()
 		)	
 	</insert>
@@ -67,6 +69,8 @@
 				PAYMENT
 		SET
 				DAYS_LEFT = DAYS_LEFT - 1
+		WHERE
+				DAYS_LEFT > 0
 	</update>
 	
 	<select id="selectListDaysList" resultType="PaymentDTO">
@@ -78,11 +82,77 @@
 					DAYS_LEFT = 0
 	</select>
 	
-	<delete id="deleteMembership" parameterType="PaymentDTO">
-		DELETE FROM
+	<update id="deleteMembership" parameterType="PaymentDTO">
+		UPDATE
+				PAYMENT
+		SET
+				ORDER_NM = 0,
+				ORDER_HP = 0,
+				PAYMENT_AMOUNT = 0,
+				PAY_METHOD = 0,
+				CARD_COMPANY_NM = 0,
+				CARD_PAY_MONTH = 0,
+				PAY_ORDER_HP = 0,
+				MEMBERSHIP = 'notApp',
+				DAYS_LEFT = 0,
+				PAY_ORDER_TIME = NOW()
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<update id="updateTotalPayment" parameterType="PaymentDTO">
+		UPDATE
+				PAYMENT
+		SET
+				TOTAL_AMOUNT_PAYMENT = TOTAL_AMOUNT_PAYMENT + #{paymentAmount}
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<select id="selectOneGetMemberId" parameterType="String" resultType="PaymentDTO">
+		SELECT
+				*
+		FROM
 				PAYMENT
 		WHERE
 				MEMBER_ID = #{memberId}
-	</delete>
+	</select>
+	
+	<update id="updateExistPhonePayment" parameterType="PaymentDTO">
+		UPDATE
+				PAYMENT
+		<set>
+				ORDER_NM = #{orderNm},
+				ORDER_HP = #{orderHp},
+				PAYMENT_AMOUNT = #{paymentAmount},
+				PAY_METHOD = #{payMethod},
+				CARD_COMPANY_NM = 0,
+				CARD_PAY_MONTH = 0,
+				PAY_ORDER_HP = #{payOrderHp},
+				MEMBERSHIP = #{membership},
+				DAYS_LEFT = DAYS_LEFT + 30,
+				PAY_ORDER_TIME = NOW()
+		</set>
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
+	
+	<update id="updateExistCardPayment" parameterType="PaymentDTO">
+		UPDATE
+				PAYMENT
+		SET
+				ORDER_NM = #{orderNm},
+				ORDER_HP = #{orderHp},
+				PAYMENT_AMOUNT = #{paymentAmount},
+				PAY_METHOD = #{payMethod},
+				CARD_COMPANY_NM = #{cardCompanyNm},
+				CARD_PAY_MONTH = #{cardPayMonth},
+				PAY_ORDER_HP = 0,
+				MEMBERSHIP = #{membership},
+				DAYS_LEFT = DAYS_LEFT + 30,
+				PAY_ORDER_TIME = NOW()
+		WHERE
+				MEMBER_ID = #{memberId}
+	</update>
 	
 </mapper>

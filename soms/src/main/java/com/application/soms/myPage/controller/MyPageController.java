@@ -36,8 +36,8 @@ public class MyPageController {
 	@Autowired
 	private MyPageService myPageservice;
 	
-	//private final String MEMBER_IMAGE_REPO_PATH = "C:\\member_file_repo\\";					// window
-	private final String MEMBER_IMAGE_REPO_PATH = "/var/lib/tomcat9/member_file_repo/";	// linux
+	private final String MEMBER_IMAGE_REPO_PATH = "C:\\member_file_repo\\";					// window
+	//private final String MEMBER_IMAGE_REPO_PATH = "/var/lib/tomcat9/member_file_repo/";	// linux
 	
 	
 	@GetMapping("/myInfo")
@@ -46,6 +46,7 @@ public class MyPageController {
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("/myPage/myInfo");
 		mv.addObject("memberDTO", myPageservice.getMemberId(memberId));
+		mv.addObject("membershipDTO", myPageservice.getMembership(memberId));
 		return mv;
 	}
 	

@@ -13,5 +13,8 @@ public interface PaymentDAO {
 	public void updateDaysLeft() throws Exception;
 	public List<PaymentDTO> selectListDaysList() throws Exception;
 	public void deleteMembership(PaymentDTO paymentDTO) throws Exception;
-	
+	public void updateTotalPayment(PaymentDTO paymentDTO) throws Exception;
+	public PaymentDTO selectOneGetMemberId(String memberId) throws Exception;
+	public void updateExistPhonePayment(PaymentDTO paymentDTO) throws Exception;
+	public void updateExistCardPayment(PaymentDTO paymentDTO) throws Exception;
 }

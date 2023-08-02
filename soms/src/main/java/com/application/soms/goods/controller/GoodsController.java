@@ -42,27 +42,10 @@ public class GoodsController {
 		mv.addObject("generalList", goodsService.getGeneralList());
 		mv.addObject("newList", goodsService.getNewList());
 		mv.addObject("dayList", goodsService.getDayViewList());
-		List<GoodsBatchDTO> dayList = goodsService.getDayViewList();
-		for (GoodsBatchDTO goodsBatchDTO : dayList) {
-			System.out.println("DAY리스트" + goodsBatchDTO);
-		}
 		mv.addObject("weekList", goodsService.getWeekViewList());
-		List<GoodsBatchDTO> weekList = goodsService.getWeekViewList();
-		for (GoodsBatchDTO goodsBatchDTO : weekList) {
-			System.out.println("일주일 리스트 : " + goodsBatchDTO);
-		}
 		mv.addObject("monthList", goodsService.getMonthViewList());
-		List<GoodsBatchDTO> monthList = goodsService.getMonthViewList();
-		for (GoodsBatchDTO goodsBatchDTO : monthList) {
-			System.out.println("한달 리스트 : " + goodsBatchDTO);
-		}
 		mv.addObject("replyList", goodsService.getNewReplyList());
-		List<GoodsDTO> replyList = goodsService.getNewReplyList();
-		for (GoodsDTO goodsDTO : replyList) {
-			System.out.println("댓글 확인 : " + goodsDTO);
-		}
-		
-		
+
 		return mv;
 	}
 	

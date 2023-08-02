@@ -9,19 +9,37 @@
 <title>Insert title here</title>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 <script>
-	
+
 	function processId(goodsCd, sort) {
+		
+		var membershipId = "${sessionId}";
+		var param = {"memberId" : membershipId};
 		if("${sessionId == null}" == "true") {
 			Swal.fire('로그인 후 이용해주세요').then(function(){
 				location.href='${contextPath }/member/login';
 			})
 		}
-		else if(goodsCd == "0") {
-			location.href="${contextPath }/goods/goodsList?sort=" + sort + "&memberId=${sessionId}";
-		}
-		else {
-			location.href="${contextPath }/goods/goodsDetail?goodsCd=" + goodsCd + "&memberId=${sessionId}";
-		}
+		
+		$.ajax({
+			type : "post",
+			url : "${contextPath}/member/checkMembership",
+			data : param,
+			success : function(data) {
+				if(data == "empty") {
+					alert("멤버쉽 가입 후 이용해주세요");
+					location.href='${contextPath }/myPage/myInfo?memberId=${sessionId}';
+				}
+				else {		
+					if(goodsCd == "0") {
+						location.href="${contextPath }/goods/goodsList?sort=" + sort + "&memberId=${sessionId}";
+					}
+					else {
+						location.href="${contextPath }/goods/goodsDetail?goodsCd=" + goodsCd + "&memberId=${sessionId}";
+					}
+				}
+			}		
+		});
+		
 		
 	}
 	

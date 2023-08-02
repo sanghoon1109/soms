@@ -42,7 +42,27 @@ public class PaymentDAOImpl implements PaymentDAO {
 
 	@Override
 	public void deleteMembership(PaymentDTO paymentDTO) throws Exception {
-		sqlSession.delete("payment.deleteMembership", paymentDTO);
+		sqlSession.update("payment.deleteMembership", paymentDTO);
+	}
+
+	@Override
+	public void updateTotalPayment(PaymentDTO paymentDTO) throws Exception {
+		sqlSession.update("payment.updateTotalPayment", paymentDTO);
+	}
+
+	@Override
+	public PaymentDTO selectOneGetMemberId(String memberId) throws Exception {
+		return sqlSession.selectOne("payment.selectOneGetMemberId", memberId);
+	}
+
+	@Override
+	public void updateExistPhonePayment(PaymentDTO paymentDTO) throws Exception {
+		sqlSession.update("payment.updateExistPhonePayment", paymentDTO);
+	}
+
+	@Override
+	public void updateExistCardPayment(PaymentDTO paymentDTO) throws Exception {
+		sqlSession.update("payment.updateExistCardPayment", paymentDTO);
 	}
 	
 }

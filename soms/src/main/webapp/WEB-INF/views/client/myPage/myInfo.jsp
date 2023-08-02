@@ -168,6 +168,17 @@
 									<strong>${memberDTO.namujiAddress }</strong>
 								</p>
 							</li>
+							<li>
+								<span style="color:white;">현재 멤버쉽 상태</span>
+								<c:choose>
+									<c:when test="${membershipDTO eq null || membershipDTO.membership eq 'notApp'}">
+										<p style="color:white;"><strong> : &nbsp;없음</strong></p>
+									</c:when>
+									<c:otherwise>
+										<p style="color:white;"><strong> : &nbsp;${membershipDTO.membership }<br>현재 ${membershipDTO.daysLeft }일 남음</strong></p>
+									</c:otherwise>
+								</c:choose>
+							</li>
 						</ul>
                     </div>
                 </div>
@@ -177,6 +188,7 @@
 						<div class="anime__details__btn"><br><br><br><br>
            					<a href="${contextPath }/myPage/addInfo?memberId=${memberDTO.memberId}" class="follow-btn"><span class="icon_info"></span> 내정보 추가 입력</a>
            					<a href="javascript:checkRemove()" class="follow-btn"><span class="icon_trash_alt"></span> 회원탈퇴</a>
+           					<a href="${contextPath }/member/membership?memberId=${memberDTO.memberId}" class="follow-btn"><span class="icon_menu"></span> 멤버쉽</a>
            				</div> 
            			</div>
             </div>

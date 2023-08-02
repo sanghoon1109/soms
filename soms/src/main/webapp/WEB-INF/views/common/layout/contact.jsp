@@ -53,20 +53,20 @@
 							</li>
 						</ul>
 						<h3>SEND MESSAGE</h3>
-						 <form action="#">
+						 <form action="${contextPath }/contact/addContact" method="post">
+						    <div class="input__item">
+                                <input type="text" placeholder="Subject" name="subject">
+                                <span class="icon_pencil_alt"></span>
+                            </div>
                             <div class="input__item">
-                                <input type="email" placeholder="Email address" name="eamil">
+                                <input type="email" placeholder="Email address" name="email">
                                 <span class="icon_mail"></span>
                             </div>
                             <div class="input__item">
                                 <input type="text" placeholder="Your Name" name="name">
                                 <span class="icon_profile"></span>
                             </div>
-                            <div class="input__item">
-                                <input type="text" placeholder="Subject">
-                                <span class="icon_pencil_alt"></span>
-                            </div>
-                                <textarea placeholder=" Message"  rows ="5" cols="40"></textarea>
+                                <textarea placeholder=" Message"  rows ="5" cols="40" name="message"></textarea>
                                 <button type="submit" class="site-btn">Send Message</button>                           
                         </form>
                     </div>

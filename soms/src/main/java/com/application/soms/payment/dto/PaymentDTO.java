@@ -19,6 +19,7 @@ public class PaymentDTO {
 	private String membership;
 	private int daysLeft;
 	private Date payOrderTime;
+	private int totalAmountPayment;
 	
 	public long getPayCd() {
 		return payCd;
@@ -92,13 +93,22 @@ public class PaymentDTO {
 	public void setPayOrderTime(Date payOrderTime) {
 		this.payOrderTime = payOrderTime;
 	}
+	public int getTotalAmountPayment() {
+		return totalAmountPayment;
+	}
+	public void setTotalAmountPayment(int totalAmountPayment) {
+		this.totalAmountPayment = totalAmountPayment;
+	}
 	
 	@Override
 	public String toString() {
 		return "PaymentDTO [payCd=" + payCd + ", memberId=" + memberId + ", orderNm=" + orderNm + ", orderHp=" + orderHp
 				+ ", paymentAmount=" + paymentAmount + ", payMethod=" + payMethod + ", cardCompanyNm=" + cardCompanyNm
 				+ ", cardPayMonth=" + cardPayMonth + ", payOrderHp=" + payOrderHp + ", membership=" + membership
-				+ ", daysLeft=" + daysLeft + ", payOrderTime=" + payOrderTime + "]";
+				+ ", daysLeft=" + daysLeft + ", payOrderTime=" + payOrderTime + ", totalAmountPayment="
+				+ totalAmountPayment + "]";
 	}
+	
+
 	
 }

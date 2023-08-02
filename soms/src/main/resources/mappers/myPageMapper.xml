@@ -75,4 +75,13 @@
 				MEMBER_ID = #{memberId}
 	</update>
 	
+	<select id="selectOneMembership" parameterType="String" resultType="PaymentDTO">
+		SELECT
+				*
+		FROM
+				PAYMENT
+		WHERE
+				MEMBER_ID = #{memberId}
+	</select>
+	
 </mapper>

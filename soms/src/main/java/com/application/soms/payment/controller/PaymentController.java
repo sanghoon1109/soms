@@ -42,12 +42,24 @@ public class PaymentController {
 		System.out.println("결제 방법 : " + paymentDTO.getPayMethod());
 		String payMethod = paymentDTO.getPayMethod();
 		System.out.println("payMethod : "+ payMethod);
-		if(payMethod.equals("phone")){
-			paymentService.phonePayment(paymentDTO);
+		if(paymentService.getExistingPaymentId(paymentDTO)) {
+			if(payMethod.equals("phone")) {
+				paymentService.existPhonePayment(paymentDTO);
+			}
+			else if (payMethod.equals("card")){
+				paymentService.existCardPayment(paymentDTO);
+			}
 		}
-		else if(payMethod.equals("card")) {
-			paymentService.cardPayment(paymentDTO);	
+		else {		
+			if(payMethod.equals("phone")){
+				paymentService.phonePayment(paymentDTO);
+			}
+			else if(payMethod.equals("card")) {
+				paymentService.cardPayment(paymentDTO);	
+			}
 		}
+		
+		paymentService.addTotalPayment(paymentDTO);
 		
 		String jsScript = "<script>";
 		jsScript += "alert('결제되었습니다.');";
